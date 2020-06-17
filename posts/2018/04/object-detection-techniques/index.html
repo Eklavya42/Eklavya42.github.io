@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="map[name:Eklavya Chopra]">
+<meta name="description" content="In this article, we will understand what is object detection, why we need to do object detection and the basic idea behind various techniques used to solved this problem. We start with the basic techniques like Viola Jones face detector to some of the advanced techniques like Single Shot Detector. Some the the techniques are:
+ Viola Jones face detector Object Detection using Histogram of Oriented Gradients (HOG) Features Scale-invariant feature transform (SIFT) AlexNet Region-based Convolutional Network (R-CNN) You Only Look Once (YOLO) Single Shot Detector (SSD)  What is Object Detection?" />
+<meta name="keywords" content=", object detection, machine learning, deep learning" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="#252627" />
+<link rel="canonical" href="/posts/2018/04/object-detection-techniques/" />
+
+<title>Eklavya Chopra</title>
+<link rel='icon' href='https://imgur.com/hjDzhOU' type='image/x-icon'>
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.dede02da9537a98158079c023e83573e18127834838ef08172acce888341a797.css">
+
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#252627">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="#252627">
+    <meta name="theme-color" content="#252627">
+
+
+
+<meta itemprop="name" content="Object Detection Techniques">
+<meta itemprop="description" content="In this article, we will understand what is object detection, why we need to do object detection and the basic idea behind various techniques used to solved this problem. We start with the basic techniques like Viola Jones face detector to some of the advanced techniques like Single Shot Detector. Some the the techniques are:
+ Viola Jones face detector Object Detection using Histogram of Oriented Gradients (HOG) Features Scale-invariant feature transform (SIFT) AlexNet Region-based Convolutional Network (R-CNN) You Only Look Once (YOLO) Single Shot Detector (SSD)  What is Object Detection?">
+<meta itemprop="datePublished" content="2018-04-02T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-04-02T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1237">
+<meta itemprop="image" content=""/>
+
+
+
+<meta itemprop="keywords" content="object detection,machine learning,deep learning," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content=""/>
+
+<meta name="twitter:title" content="Object Detection Techniques"/>
+<meta name="twitter:description" content="In this article, we will understand what is object detection, why we need to do object detection and the basic idea behind various techniques used to solved this problem. We start with the basic techniques like Viola Jones face detector to some of the advanced techniques like Single Shot Detector. Some the the techniques are:
+ Viola Jones face detector Object Detection using Histogram of Oriented Gradients (HOG) Features Scale-invariant feature transform (SIFT) AlexNet Region-based Convolutional Network (R-CNN) You Only Look Once (YOLO) Single Shot Detector (SSD)  What is Object Detection?"/>
+
+
+
+    <meta property="og:title" content="Object Detection Techniques" />
+<meta property="og:description" content="In this article, we will understand what is object detection, why we need to do object detection and the basic idea behind various techniques used to solved this problem. We start with the basic techniques like Viola Jones face detector to some of the advanced techniques like Single Shot Detector. Some the the techniques are:
+ Viola Jones face detector Object Detection using Histogram of Oriented Gradients (HOG) Features Scale-invariant feature transform (SIFT) AlexNet Region-based Convolutional Network (R-CNN) You Only Look Once (YOLO) Single Shot Detector (SSD)  What is Object Detection?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/2018/04/object-detection-techniques/" />
+<meta property="og:image" content=""/>
+<meta property="article:published_time" content="2018-04-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-04-02T00:00:00+00:00" />
+
+
+
+
+
+    <meta property="article:section" content="machine learning" />
+
+    <meta property="article:section" content="general" />
+
+
+
+    <meta property="article:published_time" content="2018-04-02 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">$ cd /home/</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner">
+      <li><a href="https://eklavya42.github.io/about/">About</a></li>
+      <li><a href="https://eklavya42.github.io/posts/">Posts</a></li>
+      <li><a href="https://drive.google.com/file/d/1zDzN3F3Z-c09PAeL92U4z-85IoQypreJ/view?usp=sharing">Resume</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>6 minutes
+
+            
+
+            </p>
+        </div>
+
+        <article>
+            <h1 class="post-title">
+                <a href="/posts/2018/04/object-detection-techniques/">Object Detection Techniques</a>
+            </h1>
+
+            
+
+            <div class="post-content">
+                <p>In this article, we will understand what is object detection, why we need to do object detection and the basic idea behind various techniques used to solved this problem. We start with the basic techniques like Viola Jones face detector to some of the advanced techniques like Single Shot Detector. Some the the techniques are:</p>
+<ul>
+<li>Viola Jones face detector</li>
+<li>Object Detection using Histogram of Oriented Gradients (HOG) Features</li>
+<li>Scale-invariant feature transform (SIFT)</li>
+<li>AlexNet</li>
+<li>Region-based Convolutional Network (R-CNN)</li>
+<li>You Only Look Once (YOLO)</li>
+<li>Single Shot Detector (SSD)</li>
+</ul>
+<h2 id="what-is-object-detection">What is Object Detection?</h2>
+<p>The formal definition for object detection is as follows:</p>
+<blockquote>
+<p>A Computer Vision technique to locate the presence of objects on images or videos. Object Detection comprises of two things i.e. Image Classification and Object Localization.</p>
+</blockquote>
+<p><strong>Image Classification</strong> answers the question &quot; What is in the picture/frame?&rdquo;. It takes an image and predicts the object in an image. For example, in the pictures below we can build a classifier that can detect a person in the picture and a bicycle.</p>
+
+    <img src="https://i.imgur.com/rdfswAP.png"  alt="Object Detection in Working"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>But if both of them are in the same image then it becomes a problem. We could train a multilabel classifier but we still don’t know the positions of bicycle or person. The task of locating the object in the image is called <strong>Object localisation</strong>.</p>
+<h2 id="why-we-need-object-detection">Why we need object detection?</h2>
+<p>Object detection is a widely used technique in production systems. There are variants of object detection problem such as:</p>
+<ul>
+<li>Image classification</li>
+<li>Image segmentation</li>
+<li>Object detection has its own place and it is used as follows:</li>
+</ul>
+<p>An image has multiple objects but every application has a focus on a particular thing such as a face detection application is focused on finding a face, a traffic control system is focused on vechiles, an driving technology is focused on differentiating between vehicles and living beings. In the same line, Object detection technique helps to identify the image segment that the application needs to focus on.</p>
+<p>It can be used to reduce the dimension of the image to only capture the object of interest and hence, improving the execution time greatly.</p>
+<h2 id="object-detection-techniques">Object Detection Techniques</h2>
+<p>Generally, Object detection is achieved by using either machine-learning based approaches or Deep learning based approaches.</p>
+<h3 id="machine-learning-based-techniques">Machine Learning Based techniques</h3>
+<p>In this approach, we define the features and then train the classifier (such as SVM) on the feature-set. Following are the machine learning based object detection techniques:</p>
+<h4 id="1-viola-jones-face-detector-2001">1. Viola Jones face detector (2001)</h4>
+<ul>
+<li>It was the first efficient face detection algorithm to provide competitive results.</li>
+<li>They hardcoded the features of the face (Haar Cascades) and then trained an SVM classifier on the featureset. Then they used that classifier to detect faces.</li>
+<li>The downside of this algorithm was that is was unable to detect faces in other orientation or arrangement (such as wearing a mask, face tilted, etc.)</li>
+</ul>
+<h4 id="2-object-detection-using-histogram-of-oriented-gradients-hog-features">2. Object Detection using Histogram of Oriented Gradients (HOG) Features</h4>
+<ul>
+<li>Navneet Dalal and Bill Triggs introduced Histogram of Oriented Gradients(HOG) features in 2005.</li>
+<li>The principle behind the histogram of oriented gradients descriptor is that local object appearance and shape within an image can be described by the distribution of intensity gradients or edge directions.</li>
+<li>The image is divided into small connected regions called cells, and for the pixels within each cell, a histogram of gradient directions is compiled. A descriptor is assigned to each detector window. This descriptor consists of all the cell histograms for each block in the detector window. The detector window descriptor is used as information for object recognition. Training and testing of classifiers such as SVM happens using this descriptor.</li>
+</ul>
+
+    <img src="https://i.imgur.com/MtIoUfK.png"  alt="HOG features"  class="center"  style="border-radius: 8px;"  />
+
+
+<ul>
+<li>Despite being good in many applications, it still used hand coded features which failed in a more generalized setting with much noise and distractions in the background.</li>
+</ul>
+<h4 id="3-scale-invariant-feature-transform-sift">3. Scale-invariant feature transform (SIFT)</h4>
+<p>SIFT was created by David Lowe from the University British Columbia in 1999.The SIFT approach, for image feature generation, takes an image and transforms it into a large collection of local feature vectors. Each of these feature vectors is invariant to any scaling, rotation or translation of the image. There are four steps involved in the SIFT algorithm:</p>
+<ul>
+<li>Scale-space peak selection: Potential location for finding features.</li>
+<li>Keypoint Localization: Accurately locating the feature keypoints.</li>
+<li>Orientation Assignment: Assigning orientation to keypoints.</li>
+<li>Keypoint descriptor: Describing the keypoints as a high dimensional vector.</li>
+</ul>
+<p>These resulting vectors are known as SIFT keys and are used in a nearest-neighbour approach to identify possible objects in an image.</p>
+
+    <img src="https://i.imgur.com/DxRth6Z.png"  alt="SIFT features"  class="center"  style="border-radius: 8px;"  />
+
+
+<h3 id="deep-learning-based-techniques">Deep Learning Based techniques</h3>
+<p>Deep Learning techniques are able to do end-to-end object detection without specifically defining features, and are typically based on convolutional neural networks (CNN). A Convolutional Neural Network (CNN, or ConvNet) is a special kind of multi-layer neural networks, designed to recognize visual patterns directly from pixel images.</p>
+<h4 id="1-alexnet">1. AlexNet</h4>
+<p>In 2012, AlexNet significantly outperformed all prior competitors at ImageNet Large Scale Visual Recognition Challenge(ILSVRC) and won the challenge. Convolutional Neural Networks became the gold standard for image classification after Kriszhevsky&rsquo;s CNN&rsquo;s performance during ImageNet.</p>
+
+    <img src="https://i.imgur.com/qIsJDE6.png"  alt="Alexnet"  class="center"  style="border-radius: 8px;"  />
+
+
+<h4 id="2-region-based-convolutional-network-r-cnn">2. Region-based Convolutional Network (R-CNN)</h4>
+<p>CNNs were too slow and computationally very expensive. R-CNN solves this problem by using an object proposal algorithm called Selective Search which reduces the number of bounding boxes that are fed to the classifier to close to 2000 region proposals.</p>
+<p>In R-CNN, the selective search method developed by J.R.R. Uijlings and al. (2012) is an alternative to exhaustive search in an image to capture object location. It looks at the image through windows of different sizes, and for each size tries to group together adjacent pixels by texture, color, or intensity to identify objects.</p>
+<p>The main idea is composed of two steps. First, using selective search, it identifies a manageable number of bounding-box object region candidates (region of interest). And then it extracts CNN features from each region independently for classification.</p>
+
+    <img src="https://i.imgur.com/aQ5a9MO.png"  alt="R-CNN"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>R-CNN was improved over the time for better performance. Fast Region-based Convolutional Network (Fast R-CNN) developed by R. Girshick (2015) reduced the time consumption related to the high number of models necessary to analyse all region proposals in R-CNN.</p>
+<h4 id="3-you-only-look-once-yolo">3. You Only Look Once (YOLO)</h4>
+<p>The YOLO model (J. Redmon et al., 2016) directly predicts bounding boxes and class probabilities with a single network in a single evaluation. They reframe the object detection as a single regression problem, straight from image pixels to bounding box coordinates and class probabilities.</p>
+<p>YOLO divides each image into a grid of S x S and each grid predicts N bounding boxes and confidence. The confidence score tells us how certain it is that the predicted bounding box actually encloses some object.</p>
+
+    <img src="https://i.imgur.com/09WoKLp.png"  alt="YOLO"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>Over time, it has become faster and better, with its versions named as: YOLO V1, YOLO V2 and YOLO V3. YOLO V2 is better than V1 in terms of accuracy and speed. YOLO V3 is more accurate than V2.</p>
+<h4 id="4-single-shot-detectorssd">4. Single Shot Detector(SSD)</h4>
+<p>SSD model was published (by Wei Liu et al.) in 2015, shortly after the YOLO model, and was also later refined in a subsequent paper.</p>
+<p>Unlike YOLO, SSD does not split the image into grids of arbitrary size but predicts offset of predefined anchor boxes for every location of the feature map. Each box has a fixed size and position relative to its corresponding cell. All the anchor boxes tile the whole feature map in a convolutional manner.</p>
+<p>Feature maps at different levels have different receptive field sizes. The anchor boxes on different levels are rescaled so that one feature map is only responsible for objects at one particular scale.</p>
+
+    <img src="https://i.imgur.com/aCDTAje.png"  alt="YOLO"  class="center"  style="border-radius: 8px;"  />
+
+
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="tags/object-detection">object detection</a></span><span class="tag"><a href="tags/machine-learning">machine learning</a></span><span class="tag"><a href="tags/deep-learning">deep learning</a></span>
+                </p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1237 Words</p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2018-04-02 05:30 &#43;0530</p>
+        </div>
+
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="">Eklavya Chopra</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

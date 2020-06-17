@@ -1,27 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hi, I&#39;m Eklavya Chopra</title>
-    <link>/</link>
-    <description>Recent content on Hi, I&#39;m Eklavya Chopra</description>
+    <title>machine learning on Hi, I&#39;m Eklavya Chopra</title>
+    <link>/categories/machine-learning/</link>
+    <description>Recent content in machine learning on Hi, I&#39;m Eklavya Chopra</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Mon, 02 Apr 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/machine-learning/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>About Me</title>
-      <link>/about/</link>
-      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/about/</guid>
-      <description>I’m currently an undergraduate student at Cluster Innovation Centre, University of Delhi pursuing B.Tech in Information Technology and Mathematics with a minor in Systems Biology.
-As a student, I have been extensively involved in various projects in the field of Artificial Intelligence and Bioinformatics.I also interned at Defence Research and Development Organisation (D.R.D.O.), working on mathematical modelling of infectious diseases.
-My domain interests include Artificial Intelligence, Computational Biology and Quantum Computing.</description>
-    </item>
     
     <item>
       <title>Object Detection Techniques</title>

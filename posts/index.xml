@@ -6,75 +6,116 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Wed, 02 Apr 2014 00:00:00 +0000</lastBuildDate>
+        <lastBuildDate>Mon, 02 Apr 2018 00:00:00 +0000</lastBuildDate>
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
         
         <item>
-            <title>Getting Started with Hugo</title>
-            <link>/posts/2014/04/getting-started-with-hugo/</link>
-            <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+            <title>Object Detection Techniques</title>
+            <link>/posts/2018/04/object-detection-techniques/</link>
+            <pubDate>Mon, 02 Apr 2018 00:00:00 +0000</pubDate>
             
-            <guid>/posts/2014/04/getting-started-with-hugo/</guid>
-            <description>Step 1. Install Hugo Go to Hugo releases and download the appropriate version for your OS and architecture.
-Save it somewhere specific as we will be using it in the next step.
-More complete instructions are available at Install Hugo
-Step 2. Build the Docs Hugo has its own example site which happens to also be the documentation site you are reading right now.
-Follow the following steps:
- Clone the Hugo repository Go into the repo Run hugo in server mode and build the docs Open your browser to http://localhost:1313  Corresponding pseudo commands:</description>
-            <content type="html"><![CDATA[<h2 id="step-1-install-hugo">Step 1. Install Hugo</h2>
-<p>Go to <a href="https://github.com/spf13/hugo/releases">Hugo releases</a> and download the
-appropriate version for your OS and architecture.</p>
-<p>Save it somewhere specific as we will be using it in the next step.</p>
-<p>More complete instructions are available at <a href="https://gohugo.io/getting-started/installing/">Install Hugo</a></p>
-<h2 id="step-2-build-the-docs">Step 2. Build the Docs</h2>
-<p>Hugo has its own example site which happens to also be the documentation site
-you are reading right now.</p>
-<p>Follow the following steps:</p>
-<ol>
-<li>Clone the <a href="http://github.com/spf13/hugo">Hugo repository</a></li>
-<li>Go into the repo</li>
-<li>Run hugo in server mode and build the docs</li>
-<li>Open your browser to http://localhost:1313</li>
-</ol>
-<p>Corresponding pseudo commands:</p>
-<pre><code>git clone https://github.com/spf13/hugo
-cd hugo
-/path/to/where/you/installed/hugo server --source=./docs
-&gt; 29 pages created
-&gt; 0 tags index created
-&gt; in 27 ms
-&gt; Web Server is available at http://localhost:1313
-&gt; Press ctrl+c to stop
-</code></pre>
-<p>Once you&rsquo;ve gotten here, follow along the rest of this page on your local build.</p>
-<h2 id="step-3-change-the-docs-site">Step 3. Change the docs site</h2>
-<p>Stop the Hugo process by hitting Ctrl+C.</p>
-<p>Now we are going to run hugo again, but this time with hugo in watch mode.</p>
-<pre><code>/path/to/hugo/from/step/1/hugo server --source=./docs --watch
-&gt; 29 pages created
-&gt; 0 tags index created
-&gt; in 27 ms
-&gt; Web Server is available at http://localhost:1313
-&gt; Watching for changes in /Users/spf13/Code/hugo/docs/content
-&gt; Press ctrl+c to stop
-</code></pre>
-<p>Open your <a href="http://vim.spf13.com">favorite editor</a> and change one of the source
-content pages. How about changing this very file to <em>fix the typo</em>. How about changing this very file to <em>fix the typo</em>.</p>
-<p>Content files are found in <code>docs/content/</code>. Unless otherwise specified, files
-are located at the same relative location as the url, in our case
-<code>docs/content/overview/quickstart.md</code>.</p>
-<p>Change and save this file.. Notice what happened in your terminal.</p>
-<pre><code>&gt; Change detected, rebuilding site
+            <guid>/posts/2018/04/object-detection-techniques/</guid>
+            <description>In this article, we will understand what is object detection, why we need to do object detection and the basic idea behind various techniques used to solved this problem. We start with the basic techniques like Viola Jones face detector to some of the advanced techniques like Single Shot Detector. Some the the techniques are:
+ Viola Jones face detector Object Detection using Histogram of Oriented Gradients (HOG) Features Scale-invariant feature transform (SIFT) AlexNet Region-based Convolutional Network (R-CNN) You Only Look Once (YOLO) Single Shot Detector (SSD)  What is Object Detection?</description>
+            <content type="html"><![CDATA[<p>In this article, we will understand what is object detection, why we need to do object detection and the basic idea behind various techniques used to solved this problem. We start with the basic techniques like Viola Jones face detector to some of the advanced techniques like Single Shot Detector. Some the the techniques are:</p>
+<ul>
+<li>Viola Jones face detector</li>
+<li>Object Detection using Histogram of Oriented Gradients (HOG) Features</li>
+<li>Scale-invariant feature transform (SIFT)</li>
+<li>AlexNet</li>
+<li>Region-based Convolutional Network (R-CNN)</li>
+<li>You Only Look Once (YOLO)</li>
+<li>Single Shot Detector (SSD)</li>
+</ul>
+<h2 id="what-is-object-detection">What is Object Detection?</h2>
+<p>The formal definition for object detection is as follows:</p>
+<blockquote>
+<p>A Computer Vision technique to locate the presence of objects on images or videos. Object Detection comprises of two things i.e. Image Classification and Object Localization.</p>
+</blockquote>
+<p><strong>Image Classification</strong> answers the question &quot; What is in the picture/frame?&rdquo;. It takes an image and predicts the object in an image. For example, in the pictures below we can build a classifier that can detect a person in the picture and a bicycle.</p>
 
-&gt; 29 pages created
-&gt; 0 tags index created
-&gt; in 26 ms
-</code></pre>
-<p>Refresh the browser and observe that the typo is now fixed.</p>
-<p>Notice how quick that was. Try to refresh the site before it&rsquo;s finished building. I double dare you.
-Having nearly instant feedback enables you to have your creativity flow without waiting for long builds.</p>
-<h2 id="step-4-have-fun">Step 4. Have fun</h2>
-<p>The best way to learn something is to play with it.</p>
+    <img src="https://i.imgur.com/rdfswAP.png"  alt="Object Detection in Working"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>But if both of them are in the same image then it becomes a problem. We could train a multilabel classifier but we still don’t know the positions of bicycle or person. The task of locating the object in the image is called <strong>Object localisation</strong>.</p>
+<h2 id="why-we-need-object-detection">Why we need object detection?</h2>
+<p>Object detection is a widely used technique in production systems. There are variants of object detection problem such as:</p>
+<ul>
+<li>Image classification</li>
+<li>Image segmentation</li>
+<li>Object detection has its own place and it is used as follows:</li>
+</ul>
+<p>An image has multiple objects but every application has a focus on a particular thing such as a face detection application is focused on finding a face, a traffic control system is focused on vechiles, an driving technology is focused on differentiating between vehicles and living beings. In the same line, Object detection technique helps to identify the image segment that the application needs to focus on.</p>
+<p>It can be used to reduce the dimension of the image to only capture the object of interest and hence, improving the execution time greatly.</p>
+<h2 id="object-detection-techniques">Object Detection Techniques</h2>
+<p>Generally, Object detection is achieved by using either machine-learning based approaches or Deep learning based approaches.</p>
+<h3 id="machine-learning-based-techniques">Machine Learning Based techniques</h3>
+<p>In this approach, we define the features and then train the classifier (such as SVM) on the feature-set. Following are the machine learning based object detection techniques:</p>
+<h4 id="1-viola-jones-face-detector-2001">1. Viola Jones face detector (2001)</h4>
+<ul>
+<li>It was the first efficient face detection algorithm to provide competitive results.</li>
+<li>They hardcoded the features of the face (Haar Cascades) and then trained an SVM classifier on the featureset. Then they used that classifier to detect faces.</li>
+<li>The downside of this algorithm was that is was unable to detect faces in other orientation or arrangement (such as wearing a mask, face tilted, etc.)</li>
+</ul>
+<h4 id="2-object-detection-using-histogram-of-oriented-gradients-hog-features">2. Object Detection using Histogram of Oriented Gradients (HOG) Features</h4>
+<ul>
+<li>Navneet Dalal and Bill Triggs introduced Histogram of Oriented Gradients(HOG) features in 2005.</li>
+<li>The principle behind the histogram of oriented gradients descriptor is that local object appearance and shape within an image can be described by the distribution of intensity gradients or edge directions.</li>
+<li>The image is divided into small connected regions called cells, and for the pixels within each cell, a histogram of gradient directions is compiled. A descriptor is assigned to each detector window. This descriptor consists of all the cell histograms for each block in the detector window. The detector window descriptor is used as information for object recognition. Training and testing of classifiers such as SVM happens using this descriptor.</li>
+</ul>
+
+    <img src="https://i.imgur.com/MtIoUfK.png"  alt="HOG features"  class="center"  style="border-radius: 8px;"  />
+
+
+<ul>
+<li>Despite being good in many applications, it still used hand coded features which failed in a more generalized setting with much noise and distractions in the background.</li>
+</ul>
+<h4 id="3-scale-invariant-feature-transform-sift">3. Scale-invariant feature transform (SIFT)</h4>
+<p>SIFT was created by David Lowe from the University British Columbia in 1999.The SIFT approach, for image feature generation, takes an image and transforms it into a large collection of local feature vectors. Each of these feature vectors is invariant to any scaling, rotation or translation of the image. There are four steps involved in the SIFT algorithm:</p>
+<ul>
+<li>Scale-space peak selection: Potential location for finding features.</li>
+<li>Keypoint Localization: Accurately locating the feature keypoints.</li>
+<li>Orientation Assignment: Assigning orientation to keypoints.</li>
+<li>Keypoint descriptor: Describing the keypoints as a high dimensional vector.</li>
+</ul>
+<p>These resulting vectors are known as SIFT keys and are used in a nearest-neighbour approach to identify possible objects in an image.</p>
+
+    <img src="https://i.imgur.com/DxRth6Z.png"  alt="SIFT features"  class="center"  style="border-radius: 8px;"  />
+
+
+<h3 id="deep-learning-based-techniques">Deep Learning Based techniques</h3>
+<p>Deep Learning techniques are able to do end-to-end object detection without specifically defining features, and are typically based on convolutional neural networks (CNN). A Convolutional Neural Network (CNN, or ConvNet) is a special kind of multi-layer neural networks, designed to recognize visual patterns directly from pixel images.</p>
+<h4 id="1-alexnet">1. AlexNet</h4>
+<p>In 2012, AlexNet significantly outperformed all prior competitors at ImageNet Large Scale Visual Recognition Challenge(ILSVRC) and won the challenge. Convolutional Neural Networks became the gold standard for image classification after Kriszhevsky&rsquo;s CNN&rsquo;s performance during ImageNet.</p>
+
+    <img src="https://i.imgur.com/qIsJDE6.png"  alt="Alexnet"  class="center"  style="border-radius: 8px;"  />
+
+
+<h4 id="2-region-based-convolutional-network-r-cnn">2. Region-based Convolutional Network (R-CNN)</h4>
+<p>CNNs were too slow and computationally very expensive. R-CNN solves this problem by using an object proposal algorithm called Selective Search which reduces the number of bounding boxes that are fed to the classifier to close to 2000 region proposals.</p>
+<p>In R-CNN, the selective search method developed by J.R.R. Uijlings and al. (2012) is an alternative to exhaustive search in an image to capture object location. It looks at the image through windows of different sizes, and for each size tries to group together adjacent pixels by texture, color, or intensity to identify objects.</p>
+<p>The main idea is composed of two steps. First, using selective search, it identifies a manageable number of bounding-box object region candidates (region of interest). And then it extracts CNN features from each region independently for classification.</p>
+
+    <img src="https://i.imgur.com/aQ5a9MO.png"  alt="R-CNN"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>R-CNN was improved over the time for better performance. Fast Region-based Convolutional Network (Fast R-CNN) developed by R. Girshick (2015) reduced the time consumption related to the high number of models necessary to analyse all region proposals in R-CNN.</p>
+<h4 id="3-you-only-look-once-yolo">3. You Only Look Once (YOLO)</h4>
+<p>The YOLO model (J. Redmon et al., 2016) directly predicts bounding boxes and class probabilities with a single network in a single evaluation. They reframe the object detection as a single regression problem, straight from image pixels to bounding box coordinates and class probabilities.</p>
+<p>YOLO divides each image into a grid of S x S and each grid predicts N bounding boxes and confidence. The confidence score tells us how certain it is that the predicted bounding box actually encloses some object.</p>
+
+    <img src="https://i.imgur.com/09WoKLp.png"  alt="YOLO"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>Over time, it has become faster and better, with its versions named as: YOLO V1, YOLO V2 and YOLO V3. YOLO V2 is better than V1 in terms of accuracy and speed. YOLO V3 is more accurate than V2.</p>
+<h4 id="4-single-shot-detectorssd">4. Single Shot Detector(SSD)</h4>
+<p>SSD model was published (by Wei Liu et al.) in 2015, shortly after the YOLO model, and was also later refined in a subsequent paper.</p>
+<p>Unlike YOLO, SSD does not split the image into grids of arbitrary size but predicts offset of predefined anchor boxes for every location of the feature map. Each box has a fixed size and position relative to its corresponding cell. All the anchor boxes tile the whole feature map in a convolutional manner.</p>
+<p>Feature maps at different levels have different receptive field sizes. The anchor boxes on different levels are rescaled so that one feature map is only responsible for objects at one particular scale.</p>
+
+    <img src="https://i.imgur.com/aCDTAje.png"  alt="YOLO"  class="center"  style="border-radius: 8px;"  />
+
+
 ]]></content>
         </item>
         
