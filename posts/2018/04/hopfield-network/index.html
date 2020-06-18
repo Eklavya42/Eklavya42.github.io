@@ -172,9 +172,9 @@ A neural network is a mathematical model or computational model inspired by biol
 $$
 sgn(x) =
 \begin{cases}
--1 &amp; \text{if $x$ &lt; 0,}\<br>
-0 &amp; \text{if $x$ = 0,}\<br>
-1 &amp; \text{if $x$ &gt; 0,}
+-1 &amp; \text{if $x$ &lt; 0,}\\\<br>
+0 &amp; \text{if $x$ = 0,}\\\<br>
+1 &amp; \text{if $x$ &gt; 0}
 \end{cases}
 $$</p>
 <p>For ease of analysis in this post we will drop the threshold (ϑ<sub>i </sub>= 0) as we will analyse mainly random patterns and thresholds are not useful in this context. In this case the model is written as:</p>
@@ -187,7 +187,7 @@ $$</p>
 <p>$$
 w_{i,j} = \frac{1}{N} \sum_{\mu=1}^p \epsilon_i^\mu\epsilon_j^\mu \tag{4}
 $$</p>
-<p>where, $\epsilon$ is the pattern and $p$ = total number of patterns.</p>
+<p>where, ε is the pattern and <em>p</em> = total number of patterns.</p>
 <p>The main advantage of Auto-associative network is that it is able to recover pattern from the memory using just a partial information about the pattern. There are two main approaches to this situation.<br>
 We update the neurons as specified in equation 3:</p>
 <ul>
