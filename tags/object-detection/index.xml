@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 02 Apr 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 12 Apr 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/object-detection/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hopfield Network</title>
+      <link>/posts/2018/04/hopfield-network/</link>
+      <pubDate>Thu, 12 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2018/04/hopfield-network/</guid>
+      <description>Hopfield Network is a recurrent neural network with bipolar threshold neurons. In this article, we will go through in depth along with an implementation. Before going into Hopfield network, we will revise basic ideas like Neural network and perceptron.
+A neural network is a mathematical model or computational model inspired by biological neural networks. It consists of an interconnected group of artiﬁcial neurons. The sructure and functioning of the central nervous system constituing neurons, axons, dentrites and syanpses which make up the processing parts of the biological neural networks were the original inspiration that led to the developement of computational models of neural networks.</description>
+    </item>
     
     <item>
       <title>Object Detection Techniques</title>
