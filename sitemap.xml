@@ -14,57 +14,67 @@
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2018-04-12T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-11T17:15:12+05:30</lastmod>
   </url>
   
   <url>
     <loc>/series/deep-learning/</loc>
-    <lastmod>2018-04-12T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-11T17:15:12+05:30</lastmod>
   </url>
   
   <url>
     <loc>/tags/deep-learning/</loc>
-    <lastmod>2018-04-12T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-11T17:15:12+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/face-detection/</loc>
+    <lastmod>2019-03-11T17:15:12+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/2019/03/face-detection-using-histogram-of-oriented-gradients/</loc>
+    <lastmod>2019-03-11T17:15:12+05:30</lastmod>
   </url>
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-04-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/posts/2018/04/hopfield-network/</loc>
-    <lastmod>2018-04-12T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-11T17:15:12+05:30</lastmod>
   </url>
   
   <url>
     <loc>/tags/machine-learning/</loc>
-    <lastmod>2018-04-12T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-11T17:15:12+05:30</lastmod>
   </url>
   
   <url>
     <loc>/categories/machine-learning/</loc>
-    <lastmod>2018-04-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/object-detection/</loc>
-    <lastmod>2018-04-12T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-11T17:15:12+05:30</lastmod>
   </url>
   
   <url>
     <loc>/posts/</loc>
-    <lastmod>2018-04-12T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-11T17:15:12+05:30</lastmod>
   </url>
   
   <url>
     <loc>/series/</loc>
-    <lastmod>2018-04-12T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-11T17:15:12+05:30</lastmod>
   </url>
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2018-04-12T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-11T17:15:12+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/2019/01/hopfield-network/</loc>
+    <lastmod>2019-01-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/object-detection/</loc>
+    <lastmod>2019-01-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>

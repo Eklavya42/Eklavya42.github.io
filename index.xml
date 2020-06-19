@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Thu, 12 Apr 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Mar 2019 17:15:12 +0530</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
@@ -18,12 +18,11 @@
       <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>/resume/</guid>
-      <description>Eklavya Chopra eklavyachopra.com | ec18may@gmail.com  Github | LinkedIN | 8076049956 Skills  Programming: Python,C++, SQL, git, HTML/CSS
-Familiar: MATLAB,R,Javascript,Mathematica
-General: Machine learning, Computer Vision, Bioinformatics
+      <description>Eklavya Chopra eklavyachopra.com | ec18may@gmail.com  Github | LinkedIn | 8076049956 Skills  Programming: Python,C++, SQL, git, HTML/CSS
+Familiar: MATLAB, R, Javascript, Mathematica
 Education  Cluster Innovation Center, Delhi ​ - Bachelor of Technology (2017-present)
- Information Technology and Mathematical Innovations Systems Biology (Minor), Expected July 2021.  A.S.N. Sr. Sec. School - Class XII (2017)
- Class XII (Senior Secondary Examination), CBSE Science student with Computer Science, Aggregate: 93.</description>
+ Information Technology and Mathematical Innovations Systems Biology (Minor), Expected July 2021.  Experience  Cluster Innovation Center, Delhi​ - Research Intern (MAY 2019 - AUG 2019)
+ Performed statistical analysis on tuberculosis infection data. Worked on CNN based Deep Learning models for classifying frontal Chest X-rays for diagnosis for pulmonary tuberculosis using tensorflow.</description>
     </item>
     
     <item>
@@ -38,11 +37,21 @@ My domain interests include Artificial Intelligence, Computational Biology and Q
     </item>
     
     <item>
-      <title>Hopfield Network</title>
-      <link>/posts/2018/04/hopfield-network/</link>
-      <pubDate>Thu, 12 Apr 2018 00:00:00 +0000</pubDate>
+      <title>Face Detection using Histogram of Oriented Gradients</title>
+      <link>/posts/2019/03/face-detection-using-histogram-of-oriented-gradients/</link>
+      <pubDate>Mon, 11 Mar 2019 17:15:12 +0530</pubDate>
       
-      <guid>/posts/2018/04/hopfield-network/</guid>
+      <guid>/posts/2019/03/face-detection-using-histogram-of-oriented-gradients/</guid>
+      <description>What is Histogram of Oriented Gradients (HOG)? Navneet Dalal and Bill Triggs introduced Histogram of Oriented Gradients(HOG) features in 2005. Histogram of Oriented Gradients (HOG) is a feature descriptor used in image processing, mainly for object detection. A feature descriptor is a representation of an image or an image patch that simplifies the image by extracting useful information from it.
+The principle behind the histogram of oriented gradients descriptor is that local object appearance and shape within an image can be described by the distribution of intensity gradients or edge directions.</description>
+    </item>
+    
+    <item>
+      <title>Hopfield Network</title>
+      <link>/posts/2019/01/hopfield-network/</link>
+      <pubDate>Sat, 12 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019/01/hopfield-network/</guid>
       <description>Hopfield Network is a recurrent neural network with bipolar threshold neurons. In this article, we will go through in depth along with an implementation. Before going into Hopfield network, we will revise basic ideas like Neural network and perceptron.
 A neural network is a mathematical model or computational model inspired by biological neural networks. It consists of an interconnected group of artiﬁcial neurons. The sructure and functioning of the central nervous system constituing neurons, axons, dentrites and syanpses which make up the processing parts of the biological neural networks were the original inspiration that led to the developement of computational models of neural networks.</description>
     </item>

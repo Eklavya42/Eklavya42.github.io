@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>face detection on Hi, I&#39;m Eklavya Chopra</title>
+    <link>/tags/face-detection/</link>
+    <description>Recent content in face detection on Hi, I&#39;m Eklavya Chopra</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 11 Mar 2019 17:15:12 +0530</lastBuildDate>
+    
+	<atom:link href="/tags/face-detection/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Face Detection using Histogram of Oriented Gradients</title>
+      <link>/posts/2019/03/face-detection-using-histogram-of-oriented-gradients/</link>
+      <pubDate>Mon, 11 Mar 2019 17:15:12 +0530</pubDate>
+      
+      <guid>/posts/2019/03/face-detection-using-histogram-of-oriented-gradients/</guid>
+      <description>What is Histogram of Oriented Gradients (HOG)? Navneet Dalal and Bill Triggs introduced Histogram of Oriented Gradients(HOG) features in 2005. Histogram of Oriented Gradients (HOG) is a feature descriptor used in image processing, mainly for object detection. A feature descriptor is a representation of an image or an image patch that simplifies the image by extracting useful information from it.
+The principle behind the histogram of oriented gradients descriptor is that local object appearance and shape within an image can be described by the distribution of intensity gradients or edge directions.</description>
+    </item>
+    
+  </channel>
+</rss>

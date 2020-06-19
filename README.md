@@ -1,2 +1,3 @@
 # Eklavya42.github.io
-Personal Website
+
+The public build of my personal blog. Made with Hugo. Currently hosted on Github Pages.
