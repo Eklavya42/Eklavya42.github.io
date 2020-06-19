@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 11 Mar 2019 17:15:12 +0530</lastBuildDate>
+    <lastBuildDate>Sat, 16 Mar 2019 17:15:12 +0530</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,9 +15,27 @@
     <item>
       <title>deep learning</title>
       <link>/tags/deep-learning/</link>
-      <pubDate>Mon, 11 Mar 2019 17:15:12 +0530</pubDate>
+      <pubDate>Sat, 16 Mar 2019 17:15:12 +0530</pubDate>
       
       <guid>/tags/deep-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>machine learning</title>
+      <link>/tags/machine-learning/</link>
+      <pubDate>Sat, 16 Mar 2019 17:15:12 +0530</pubDate>
+      
+      <guid>/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>object detection</title>
+      <link>/tags/object-detection/</link>
+      <pubDate>Sat, 16 Mar 2019 17:15:12 +0530</pubDate>
+      
+      <guid>/tags/object-detection/</guid>
       <description></description>
     </item>
     
@@ -27,24 +45,6 @@
       <pubDate>Mon, 11 Mar 2019 17:15:12 +0530</pubDate>
       
       <guid>/tags/face-detection/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>machine learning</title>
-      <link>/tags/machine-learning/</link>
-      <pubDate>Mon, 11 Mar 2019 17:15:12 +0530</pubDate>
-      
-      <guid>/tags/machine-learning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>object detection</title>
-      <link>/tags/object-detection/</link>
-      <pubDate>Sat, 12 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/object-detection/</guid>
       <description></description>
     </item>
     

@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 11 Mar 2019 17:15:12 +0530</lastBuildDate>
+    <lastBuildDate>Sat, 16 Mar 2019 17:15:12 +0530</lastBuildDate>
     
 	<atom:link href="/categories/machine-learning/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Object Detection using SIFT</title>
+      <link>/posts/2019/03/object-detection-using-sift/</link>
+      <pubDate>Sat, 16 Mar 2019 17:15:12 +0530</pubDate>
+      
+      <guid>/posts/2019/03/object-detection-using-sift/</guid>
+      <description>Object Detection using SIFT algorithm SIFT (Scale Invariant Feature Transform) is a feature detection algorithm in computer vision to detect and describe local features in images. It was created by David Lowe from the University British Columbia in 1999. David Lowe presents the SIFT algorithm in his original paper titled Distinctive Image Features from Scale-Invariant Keypoints.
+Image features extracted by SIFT are reasonably invariant to various changes such as their llumination image noise, rotation, scaling, and small changes in viewpoint.</description>
+    </item>
     
     <item>
       <title>Face Detection using Histogram of Oriented Gradients</title>

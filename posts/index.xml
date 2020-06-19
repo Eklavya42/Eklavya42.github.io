@@ -6,8 +6,330 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Mon, 11 Mar 2019 17:15:12 +0530</lastBuildDate>
+        <lastBuildDate>Sat, 16 Mar 2019 17:15:12 +0530</lastBuildDate>
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Object Detection using SIFT</title>
+            <link>/posts/2019/03/object-detection-using-sift/</link>
+            <pubDate>Sat, 16 Mar 2019 17:15:12 +0530</pubDate>
+            
+            <guid>/posts/2019/03/object-detection-using-sift/</guid>
+            <description>Object Detection using SIFT algorithm SIFT (Scale Invariant Feature Transform) is a feature detection algorithm in computer vision to detect and describe local features in images. It was created by David Lowe from the University British Columbia in 1999. David Lowe presents the SIFT algorithm in his original paper titled Distinctive Image Features from Scale-Invariant Keypoints.
+Image features extracted by SIFT are reasonably invariant to various changes such as their llumination image noise, rotation, scaling, and small changes in viewpoint.</description>
+            <content type="html"><![CDATA[<h1 id="object-detection-using-sift-algorithm">Object Detection using SIFT algorithm</h1>
+<p>SIFT (Scale Invariant Feature Transform) is a  <strong>feature detection algorithm</strong>  in computer vision to detect and describe local features in images. It was created by David Lowe from the University British Columbia in  <strong>1999</strong>. David Lowe presents the SIFT algorithm in his original paper titled  <a href="https://www.cs.ubc.ca/~lowe/papers/ijcv04.pdf">Distinctive Image Features from Scale-Invariant Keypoints</a>.</p>
+<p>Image features extracted by SIFT are reasonably invariant to various changes such as their  <strong>llumination image noise</strong>,  <strong>rotation</strong>,  <strong>scaling</strong>, and  <strong>small changes in viewpoint</strong>.</p>
+<p>There are four main stages involved in SIFT algorithm :</p>
+<ol>
+<li>Scale-space extrema detection</li>
+<li>Keypoint localization</li>
+<li>Orientation Assignment</li>
+<li>Keypoint descriptor</li>
+</ol>
+<p>We will now examine these stages in detail.</p>
+<h2 id="sift-algorithm--explained">SIFT Algorithm : Explained</h2>
+<h2 id="1-scale-space-extrema-detection">1. Scale-space extrema detection</h2>
+<p>Before going into this, we will visit the idea of scale space theory and then, see how it has been used in SIFT.</p>
+<h3 id="scale-space">Scale-space</h3>
+<p>Scale-space theory is a framework for multiscale image representation, which has been developed by the computer vision community with complementary motivations from physics and biologic vision. The idea is to handle the multiscale nature of real-world objects, which implies that objects may be perceived in different ways depending on the scale of observation.</p>
+<h3 id="scale-space-in-sift">Scale-space in SIFT</h3>
+<p>The  <strong>first stage is to identify locations and scales that can be repeatably assigned under differing views of the same object</strong>. Detecting locations that are invariant to scale change of the image can be accomplished by searching for stable features across all possible scales, using a continuous function of scale known as scale space.</p>
+<p>The scale space is defined by the function:</p>
+<p>$$
+L(x, y, \sigma) = G(x, y, \sigma)* I(x, y)
+$$</p>
+<p>Where:</p>
+<ul>
+<li>L is the blurred image</li>
+<li>G is a Gaussian blur operator</li>
+<li>I is the input image</li>
+<li>σ acts as a scale parameter ( Higher value results in more blur)</li>
+</ul>
+<p>So, we first take the original image and blur it using a Gaussian convolution. What follows is a sequence of further convolutions with increasing standard deviation(σ). Images of same size (with different blur levels) are called an Octave. Then, we downsize the original image by a factor of 2. This starts another row of convolutions. We repeat this process until the pictures are too small to proceed.</p>
+
+    <img src="https://i.imgur.com/MkAyEIZ.png"  class="center"  />
+
+
+<center>  <figcaption>Figure 1 : (top left) A grey-level image and the scale-space representations computed at scale levels t = 1,8 and 64.  
+Image from:  
+Encyclopedia of Computer Science and Engineering (Benjamin Wah, ed), John Wiley and Sons, Volume IV, pages 2495–2504, Hoboken, New Jersey, 2009.Steps for Object Detection with HOG</figcaption> </center>
+<p>Now we have constructed a scale space. We do this to handle the multiscale nature of real-world objects.</p>
+<h3 id="laplacian-of-gaussian-log-approximations">Laplacian of Gaussian (LoG) approximations</h3>
+<p>Since we are finding the most stable image features we consider Lapcian of Gaussian. In detailed experimental comparisons, Mikolajczyk (2002) found that maxima and minima of Laplacian of Gaussian produce the most stable image features compared to a range of other possible image functions, such as the gradient, Hessian, or Harris corner function.</p>
+<p>The problem that occurs here is that calculating all those second order derivatives is computationally intensive so we use Difference of Gaussians which is an approximation of LoG. Difference of Gaussian is obtained as the difference of Gaussian blurring of an image with two different σ and is given by:</p>
+<p>$$
+D(x,y,\sigma) = (G(x,y,k\sigma) - G(x,y,\sigma)) * I(x,y)
+$$
+$$
+D(x,y,\sigma) = L(x,y,k\sigma) - L(x,y,\sigma)
+$$
+It is represented in below image:</p>
+
+    <img src="https://i.imgur.com/Xwkf4e4.png"  class="center"  />
+
+
+<center>  <figcaption>Figure 2 : For each octave of scale space, the initial image is repeatedly convolved with Gaussians to produce the set of scale space images shown on the left. Adjacent Gaussian images are subtracted to produce the difference-of-Gaussian images on the right. After each octave, the Gaussian image is down-sampled by a factor of 2, and the process repeated.  
+Image from:  
+Lowe, David G. "Distinctive image features from scale-invariant keypoints." International journal of computer vision 60.2 (2004): 91-110.</figcaption> </center>
+<p>This is done for all octaves. The resulting images are an approximation of scale invariant laplacian of gaussian (which produces stable image keypoints).</p>
+<h2 id="2-keypoint-localization">2. Keypoint Localization</h2>
+<p>Now that we have found potential keypoints, we have to refine it further for more accurate results.</p>
+<h3 id="local-maximaminima-detection">Local maxima/minima detection</h3>
+<p>The first step is to locate the maxima and minima of Difference of Gaussian(DoG) images. Each pixel in the DoG images is compared to its 8 neighbours at the same scale, plus the 9 corresponding neighbours at neighbouring scales. If the pixel is a local maximum or minimum, it is selected as a candidate keypoint.</p>
+
+    <img src="https://i.imgur.com/Tu8JHjC.png"  class="center"  />
+
+
+<center>  <figcaption>Figure 3 : Maxima and minima of the difference-of-Gaussian images are detected by comparing a pixel (marked with X) to its 26   neighbours in 3 × 3 regions at the current and adjacent scales (marked with circles).  
+Image from:  
+Lowe, David G. "Distinctive image features from scale-invariant keypoints." International journal of computer vision 60.2 (2004): 91-110.</figcaption> </center>
+<p>Once a keypoint candidate has been found by comparing a pixel to its neighbors, the next step is to refine the location of these feature points to sub-pixel accuracy whilst simultaneously removing any poor features.</p>
+<h3 id="sub-pixel-refinement">Sub-Pixel Refinement</h3>
+<p>The sub-pixel localization proceeds by fitting a 3D quadratic function to the local sample points to determine the interpolated location of the maximum. This approach uses the Taylor expansion (up to the quadratic terms) of the scale-space function, D(x, y, σ), shifted so that the origin is at the sample point:</p>
+<p>$$
+D(x) = D + \frac{\partial D^T}{\partial x} x + \frac{1}{2}x^T \frac{\partial^2 D}{\partial x^2}x
+$$</p>
+<p>The location of the extremum, \(x̂\) , is determined by taking the derivative of this function with respect to x and setting it to zero, giving:</p>
+<p>$$
+\hat{x} = - \frac{\partial^2 D^{-1}}{\partial x^2}\frac{\partial D}{\partial x}
+$$</p>
+<p>On solving, we&rsquo;ll get subpixel key point locations. Now we need to remove keypoints which have low contrast or lie along the edge as they are not useful to us.</p>
+<h3 id="removing-low-contrast-keypoints">Removing Low Contrast Keypoints</h3>
+<p>The function value at the extremum, D(x̂), is useful for rejecting unstable extrema with low contrast. This can be obtained by substituting extremum x̂ into the Taylor Expansion (upto quadratic terms) as given above, giving:
+$$
+D(\hat{x} ) = D + \frac{1}{2} \frac{\partial D^T}{\partial x}\hat{x}
+$$</p>
+<h3 id="removing-edge-responses">Removing Edge Responses</h3>
+<p>This is achieved by using a 2x2 Hessian matrix (H) to compute the principal curvature. A poorly defined peak in the difference-of-Gaussian function will have a large principal curvature across the edge but a small one in the perpendicular direction.</p>
+
+    <img src="https://i.imgur.com/qrmNemy.png"  class="center"  />
+
+
+<center>  <figcaption>Image source: https://courses.cs.washington.edu/courses/cse455/10au/notes/SIFT.ppt</figcaption> </center>
+<p>So from the calculation from hessian matrix we reject the flats and edges and keep the corner keypoints.</p>
+<h2 id="3-keypoint-orientation-assignment">3. Keypoint Orientation Assignment</h2>
+<p>To determine the keypoint orientation, a gradient orientation histogram is computed in the neighbourhood of the keypoint.</p>
+<p>The magnitude and orientation is calculated for all pixels around the keypoint. Then, a histogram with 36 bins covering 360 degrees is created.</p>
+<p>$$
+m(x,y) = \sqrt{(L(x+1,y) -  L(x-1,y))^2 + (L(x,y+1) - L(x,y-1))^2 }
+$$</p>
+<p>$$
+\theta(x,y) = \tan^{-1} {\frac{L(x,y+1) - L(x,y-1)}{L(x+1,y) -  L(x-1,y)}}
+$$</p>
+<p>\(m(x,y)\) is magnitude and \(\theta(x,y)\) is the orientation of the pixel at x,y location.
+Each sample added to the histogram is weighted by its gradient magnitude and by a Gaussian-weighted circular window with a σ that is 1.5 times that of the scale of the keypoint.</p>
+<p>Each sample added to the histogram is weighted by its gradient magnitude and by a Gaussian-weighted circular window with a σ that is 1.5 times that of the scale of the keypoint.</p>
+
+    <img src="https://i.imgur.com/m1TJk5R.jpg"  class="center"  />
+
+
+<center>  <figcaption>Image source: http://aishack.in/tutorials/sift-scale-invariant-feature-transform-keypoint-orientation</figcaption> </center>
+<p>When it is done for all the pixels around the keypoint, the histogram will have a peak at some point. And any peaks above 80% of the highest peak are converted into a new keypoint. This new keypoint has the same location and scale as the original. But it&rsquo;s orientation is equal to the other peak.</p>
+<h2 id="4-keypoint-descriptor">4. Keypoint Descriptor</h2>
+<p>Once a keypoint orientation has been selected, the feature descriptor is computed as a set of orientation histograms.</p>
+<p>To do this, a 16x16 window around the keypoint is taken. It is divided into 16 sub-blocks of 4x4 size.</p>
+<p>Within each 4x4 window, gradient magnitudes and orientations are calculated. These orientations are put into an 8 bin histogram.</p>
+<p>Histograms contain 8 bins each, and each descriptor contains an array of 4 histograms around the keypoint. This leads to a SIFT feature vector with 4 × 4 × 8 = 128 elements.</p>
+
+    <img src="https://i.imgur.com/Nm02XiB.jpg"  class="center"  />
+
+
+<p>This feature vector introduces a few complications.</p>
+<ul>
+<li>Since we use gradient orientations, if you rotate the image, all gradient orientations also change. To solve this we subtract the keypoint&rsquo;s rotation from each orientation. Thus each gradient orientation is relative to the keypoint&rsquo;s orientation.</li>
+<li>We also normalize the vector to enhance invariance to changes in illumination. So we threshold the values in the feature vector to each be no larger than 0.2 (i.e. if value larger than 0.2 then it is set to 0.2).</li>
+</ul>
+<h1 id="sift-implementation">SIFT Implementation</h1>
+<p>In this section we will be performing object detection using SIFT with the help of opencv library in python.</p>
+<p>Now before starting object detection let&rsquo;s first see the keypoint detection.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> cv2
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
+
+train_img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(<span style="color:#e6db74">&#39;train.jpg&#39;</span>)   <span style="color:#75715e"># train image</span>
+query_img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(<span style="color:#e6db74">&#39;query.jpg&#39;</span>)   <span style="color:#75715e"># query/test image</span>
+
+<span style="color:#75715e"># Turn Images to grayscale</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">to_gray</span>(color_img):
+    gray <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>cvtColor(color_img, cv2<span style="color:#f92672">.</span>COLOR_BGR2GRAY)
+    <span style="color:#66d9ef">return</span> gray
+
+train_img_gray <span style="color:#f92672">=</span> to_gray(train_img)
+query_img_gray <span style="color:#f92672">=</span> to_gray(query_img)
+
+<span style="color:#75715e"># Initialise SIFT detector</span>
+sift <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>xfeatures2d<span style="color:#f92672">.</span>SIFT_create()
+
+<span style="color:#75715e"># Generate SIFT keypoints and descriptors</span>
+train_kp, train_desc <span style="color:#f92672">=</span> sift<span style="color:#f92672">.</span>detectAndCompute(train_img_gray, None)
+query_kp, query_desc <span style="color:#f92672">=</span> sift<span style="color:#f92672">.</span>detectAndCompute(query_img_gray, None)
+
+plt<span style="color:#f92672">.</span>figure(<span style="color:#ae81ff">1</span>)
+plt<span style="color:#f92672">.</span>imshow((cv2<span style="color:#f92672">.</span>drawKeypoints(train_img_gray, train_kp, train_img<span style="color:#f92672">.</span>copy())))
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Train Image Keypoints&#39;</span>)
+
+plt<span style="color:#f92672">.</span>figure(<span style="color:#ae81ff">2</span>)
+plt<span style="color:#f92672">.</span>imshow((cv2<span style="color:#f92672">.</span>drawKeypoints(query_img_gray, query_kp, query_img<span style="color:#f92672">.</span>copy())))
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Query Image Keypoints&#39;</span>)
+
+plt<span style="color:#f92672">.</span>show()
+
+</code></pre></div><p>Here I took pictures of Taj Mahal from different viewpoints for train and query image.</p>
+
+    <img src="https://i.imgur.com/hItFfSK.png"  class="center"  />
+
+
+
+    <img src="https://i.imgur.com/RhAc0mr.png"  class="center"  />
+
+
+
+    <img src="https://i.imgur.com/VUSkJJ2.png"  class="center"  />
+
+
+
+    <img src="https://i.imgur.com/i2o2x1b.png"  class="center"  />
+
+
+<p>As you can see from the above code that the following function :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Initialise SIFT detector</span>
+sift <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>xfeatures2d<span style="color:#f92672">.</span>SIFT_create()
+
+<span style="color:#75715e"># Generate SIFT keypoints and descriptors</span>
+train_kp, train_desc <span style="color:#f92672">=</span> sift<span style="color:#f92672">.</span>detectAndCompute(train_img_gray, None)
+query_kp, query_desc <span style="color:#f92672">=</span> sift<span style="color:#f92672">.</span>detectAndCompute(query_img_gray, None)
+
+</code></pre></div><p>is the one that does the computations for the SIFT algorithm and returns keypoints and descriptors of the image.</p>
+<p>We can use the keypoints and descriptors for feature matching between two objects and finally find object in the query image.</p>
+<p>Now we move onto feature matching part. We will match features in one image with others.</p>
+<p>For feature matching we are using Brute-Force matcher provided by OpenCV. You can also use FLANN Matcher in OpenCV as I will use in further section of the tutorial.</p>
+<p>Brute-Force matcher takes the descriptor of one feature in first set and is matched with all other features in second set using some distance calculation. And the closest one is returned.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># create a BFMatcher object which will match up the SIFT features</span>
+bf <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>BFMatcher(cv2<span style="color:#f92672">.</span>NORM_L2, crossCheck<span style="color:#f92672">=</span>True)
+
+matches <span style="color:#f92672">=</span> bf<span style="color:#f92672">.</span>match(train_desc, query_desc)
+
+<span style="color:#75715e"># Sort the matches in the order of their distance.</span>
+matches <span style="color:#f92672">=</span> sorted(matches, key <span style="color:#f92672">=</span> <span style="color:#66d9ef">lambda</span> x:x<span style="color:#f92672">.</span>distance)
+
+<span style="color:#75715e"># draw the top N matches</span>
+N_MATCHES <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
+
+match_img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>drawMatches(
+    train_img, train_kp,
+    query_img, query_kp,
+    matches[:N_MATCHES], query_img<span style="color:#f92672">.</span>copy(), flags<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+
+plt<span style="color:#f92672">.</span>figure(<span style="color:#ae81ff">3</span>)
+plt<span style="color:#f92672">.</span>imshow(match_img)
+plt<span style="color:#f92672">.</span>show()
+
+</code></pre></div><p>The visualization of how the SIFT features match up each other across the two images is as follow:</p>
+
+    <img src="https://i.imgur.com/D4KsaP4.png"  class="center"  />
+
+
+<p>So till now we have found the keypoints and descriptors for the train and query images and then matched top keypoints and visualized it. But this is still not sufficient to find the object.</p>
+<p>For that, we can use a function cv2.findHomography(). If we pass the set of points from both the images, it will find the perpective transformation of that object. Then we can use cv2.perspectiveTransform() to find the object. It needs atleast four correct points to find the transformation.</p>
+<p>So now we will use a train image and then try to detect it in the real-time.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> cv2
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
+
+<span style="color:#75715e"># Threshold</span>
+MIN_MATCH_COUNT<span style="color:#f92672">=</span><span style="color:#ae81ff">30</span>
+
+<span style="color:#75715e"># Initiate SIFT detector</span>
+sift<span style="color:#f92672">=</span>cv2<span style="color:#f92672">.</span>xfeatures2d<span style="color:#f92672">.</span>SIFT_create()
+
+
+<span style="color:#75715e"># Create the Flann Matcher object</span>
+FLANN_INDEX_KDITREE<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+flannParam<span style="color:#f92672">=</span>dict(algorithm<span style="color:#f92672">=</span>FLANN_INDEX_KDITREE,tree<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+flann<span style="color:#f92672">=</span>cv2<span style="color:#f92672">.</span>FlannBasedMatcher(flannParam,{})
+
+
+train_img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(<span style="color:#e6db74">&#34;obama1.jpg&#34;</span>,<span style="color:#ae81ff">0</span>)  <span style="color:#75715e"># train image</span>
+<span style="color:#75715e"># find the keypoints and descriptors with SIFT</span>
+kp1,desc1 <span style="color:#f92672">=</span> sift<span style="color:#f92672">.</span>detectAndCompute(train_img,None)
+<span style="color:#75715e"># draw keypoints of the train image</span>
+train_img_kp<span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>drawKeypoints(train_img,kp1,None,(<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>),<span style="color:#ae81ff">4</span>)
+<span style="color:#75715e"># show the train image keypoints</span>
+plt<span style="color:#f92672">.</span>imshow(train_img_kp)    
+plt<span style="color:#f92672">.</span>show()
+
+<span style="color:#75715e"># start capturing video</span>
+cap <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>VideoCapture(<span style="color:#ae81ff">0</span>)
+
+<span style="color:#66d9ef">while</span> True:
+    ret, frame <span style="color:#f92672">=</span> cap<span style="color:#f92672">.</span>read()
+    <span style="color:#75715e"># turn the frame captured into grayscale.</span>
+    gray <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>cvtColor(frame,cv2<span style="color:#f92672">.</span>COLOR_BGR2GRAY)
+    <span style="color:#75715e"># find the keypoints and descriptors with SIFT  of the frame captured.</span>
+    kp2, desc2 <span style="color:#f92672">=</span> sift<span style="color:#f92672">.</span>detectAndCompute(gray,None)   
+
+    <span style="color:#75715e"># Obtain matches using K-Nearest Neighbor Method.</span>
+    <span style="color:#75715e">#&#39;matches&#39; is the number of similar matches found in both images.</span>
+    matches<span style="color:#f92672">=</span>flann<span style="color:#f92672">.</span>knnMatch(desc2,desc1,k<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+
+    <span style="color:#75715e"># store all the good matches as per Lowe&#39;s ratio test.</span>
+    goodMatch<span style="color:#f92672">=</span>[]
+    <span style="color:#66d9ef">for</span> m,n <span style="color:#f92672">in</span> matches:
+        <span style="color:#66d9ef">if</span>(m<span style="color:#f92672">.</span>distance<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0.75</span><span style="color:#f92672">*</span>n<span style="color:#f92672">.</span>distance):
+            goodMatch<span style="color:#f92672">.</span>append(m)
+
+    <span style="color:#75715e"># If enough matches are found, we extract the locations of matched keypoints in both the images.</span>
+    <span style="color:#75715e"># They are passed to find the perpective transformation.</span>
+    <span style="color:#75715e"># Then we are able to locate our object.</span>
+    <span style="color:#66d9ef">if</span>(len(goodMatch)<span style="color:#f92672">&gt;</span>MIN_MATCH_COUNT):
+        tp<span style="color:#f92672">=</span>[]  <span style="color:#75715e"># src_pts</span>
+        qp<span style="color:#f92672">=</span>[]  <span style="color:#75715e"># dst_pts</span>
+        <span style="color:#66d9ef">for</span> m <span style="color:#f92672">in</span> goodMatch:
+            tp<span style="color:#f92672">.</span>append(kp1[m<span style="color:#f92672">.</span>trainIdx]<span style="color:#f92672">.</span>pt)
+            qp<span style="color:#f92672">.</span>append(kp2[m<span style="color:#f92672">.</span>queryIdx]<span style="color:#f92672">.</span>pt)
+        tp,qp<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>float32((tp,qp))
+
+        H,status<span style="color:#f92672">=</span>cv2<span style="color:#f92672">.</span>findHomography(tp,qp,cv2<span style="color:#f92672">.</span>RANSAC,<span style="color:#ae81ff">3.0</span>)
+
+
+        h,w <span style="color:#f92672">=</span> train_img<span style="color:#f92672">.</span>shape
+        train_outline<span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>float32([[[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>],[<span style="color:#ae81ff">0</span>,h<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>],[w<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,h<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>],[w<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>]]])
+        query_outline <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>perspectiveTransform(train_outline,H)
+
+        cv2<span style="color:#f92672">.</span>polylines(frame,[np<span style="color:#f92672">.</span>int32(query_outline)],True,(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">0</span>),<span style="color:#ae81ff">5</span>)
+        cv2<span style="color:#f92672">.</span>putText(frame,<span style="color:#e6db74">&#39;Object Found&#39;</span>,(<span style="color:#ae81ff">50</span>,<span style="color:#ae81ff">50</span>), cv2<span style="color:#f92672">.</span>FONT_HERSHEY_COMPLEX, <span style="color:#ae81ff">2</span> ,(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">0</span>), <span style="color:#ae81ff">2</span>)
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Match Found-&#34;</span>)
+        <span style="color:#66d9ef">print</span>(len(goodMatch),MIN_MATCH_COUNT)
+
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Not Enough match found-&#34;</span>)
+        <span style="color:#66d9ef">print</span>(len(goodMatch),MIN_MATCH_COUNT)
+    cv2<span style="color:#f92672">.</span>imshow(<span style="color:#e6db74">&#39;result&#39;</span>,frame)
+
+    <span style="color:#66d9ef">if</span> cv2<span style="color:#f92672">.</span>waitKey(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">13</span>:
+        <span style="color:#66d9ef">break</span>
+cap<span style="color:#f92672">.</span>release()
+cv2<span style="color:#f92672">.</span>destroyAllWindows()
+
+</code></pre></div><p>Result :</p>
+
+    <img src="https://i.imgur.com/QmcJQ1P.png"  class="center"  />
+
+
+
+    <img src="https://i.imgur.com/w7fIMHs.png"  class="center"  />
+
+
+<p>To see the full code for this post check out this  <a href="https://github.com/Eklavya42/SIFT-Scale-Invariant-Feature-Transform">repository</a></p>
+<h2 id="disadvantages-of-sift-algorithm">Disadvantages of SIFT algorithm</h2>
+<ul>
+<li>SIFT uses 128 dimensional feature vectors which are big and computational cost of SIFT due to this rises.</li>
+<li>SIFT continues to be a good detector when the images that are to be matches are nearly identical but even a relatively small change will produce a big drop in matching keypoints.</li>
+<li>SIFT cannot find too many points in the image that are resistant to scale, rotation and distortion if the original image is out of focus (blurred). Thus, it does not work well if the images are blurred.</li>
+</ul>
+]]></content>
+        </item>
         
         <item>
             <title>Face Detection using Histogram of Oriented Gradients</title>
