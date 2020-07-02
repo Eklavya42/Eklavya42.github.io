@@ -6,8 +6,152 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Sat, 16 Mar 2019 17:15:12 +0530</lastBuildDate>
+        <lastBuildDate>Thu, 04 Jun 2020 17:15:12 +0530</lastBuildDate>
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Linear Regression</title>
+            <link>/posts/2020/06/linear-regression/</link>
+            <pubDate>Thu, 04 Jun 2020 17:15:12 +0530</pubDate>
+            
+            <guid>/posts/2020/06/linear-regression/</guid>
+            <description>This post will cover the linear regression implementation (From Scratch using Pytorch).
+Linear Regression Equation : Overview Linear regression attempts to fit a line of best fit to a data set, using one or more features as coefficients for a linear equation. It is an approach for modelling the relationship between dependent variable and independent variables.
+In a linear regression model, each target (dependent) variable is estimated to be a weighted sum of the input variables, offset by some constant, known as a bias :</description>
+            <content type="html"><![CDATA[<p>This post will cover the linear regression implementation (From Scratch using Pytorch).</p>
+<h2 id="linear-regression-equation--overview">Linear Regression Equation : Overview</h2>
+<p>Linear regression attempts to fit a line of best fit to a data set, using one or more features as coefficients for a linear equation. It is an approach for modelling the relationship between <em>dependent</em> variable and <em>independent</em> variables.</p>
+<p>In a linear regression model, each target (dependent) variable   is estimated to be a weighted sum of the input variables, offset by some constant, known as a bias :</p>
+<p>$$
+Y = X.W^T + b \tag{1}
+$$</p>
+<p>Where,</p>
+<p>$$
+Y = \begin{bmatrix}y_1\\y_2\\.\\.\\y_n\end{bmatrix}_{n\times1}   X  = \begin{bmatrix}x_{11} &amp; x_{12} &amp; . &amp; . &amp; x_{1n} \\x_{21} &amp; x_{22} &amp; . &amp; . &amp; x_{2n} \\. &amp; . &amp; . &amp; . &amp; .\\.&amp; .&amp; . &amp; . &amp; .\\x_{n1} &amp; x_{n2} &amp; . &amp; . &amp; x_{nn}\end{bmatrix}_{n\times n} W^T = \begin{bmatrix}w_1\\ w_2\\.\\.\\w_n\end{bmatrix}_{n\times 1}  b  = \begin{bmatrix}b_1\\ b_2\\.\\.\\b_n\end{bmatrix}_{n\times 1}<br>
+$$</p>
+<p>We get the following expansion of the equation 1 :
+$$
+y_1 = w_1x_{11} + w_2x_{12} + . ..+ w_nx_{1n} + b_1
+$$</p>
+<p>Now, lets take an example for better explanation. Here, we take a look at advertisement data which has the following data :</p>
+<iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=5&hideInput=true" title="Jovian Viewer" height="216" width="800" frameborder="0" scrolling="auto"></iframe>
+<p>The above data consists of sales of a particular product along with advertisement budget for the product in TV, radio and newspaper media. Our objective is to increase the sales of the product and we can control the budget of advertisement. So, if we determine the relationship between advertisement budget and sales, we can figure out how to increase the sales of a product by introducing changes in the advertisement budget. Here, the <em>independent variables</em> \((x_i)\) will be the advertisement budget for each of the three media and the <em>dependent variable</em>\((y)\) will be the sales of the product. The relationship between independent and dependent variables in this data can be defined as :
+$$
+y = w_1x_1 + w_2x_2 + w_3x_3 + b \tag{2}
+$$
+where, \( y\) is sales and \(x_1,x_2,x_3\)  are advertisement budgets for TV, radio and newspaper respectively. The above equation can be written in matrix form as :
+$$
+y = X.W^T +b
+$$</p>
+<p>where
+$$
+X = \begin{bmatrix}x_1 &amp; x_2 &amp; x_3\end{bmatrix}_{1\times 3} \hspace{1cm}  W = \begin{bmatrix}w_1 &amp; w_2 &amp; w_3\end{bmatrix}_{1\times 3}
+$$</p>
+<p>Now that we have discussed the linear regression equation, lets move on towards implementation and discuss the concepts implemented.</p>
+<h2 id="implementation-from-scratch-using-pytorch">Implementation from Scratch (using Pytorch)</h2>
+<h3 id="importing-relevant-libraries">Importing relevant libraries</h3>
+<iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=1" title="Jovian Viewer" height="248" width="800" frameborder="0" scrolling="auto"></iframe>
+<h3 id="dataset">Dataset</h3>
+<p>I am using Advertisement Data which was also used in <a href="http://faculty.marshall.usc.edu/gareth-james/ISL/data.html">ISLR book</a>.</p>
+<iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=3" title="Jovian Viewer" height="183" width="800" frameborder="0" scrolling="auto"></iframe>
+<iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch/v/2&cellId=4" title="Jovian Viewer" height="350" width="800" frameborder="0" scrolling="auto"></iframe>
+<p>We can remove the inbuilt index in the data.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># removing the inbuilt index column</span>
+df<span style="color:#f92672">.</span>drop(<span style="color:#e6db74">&#39;Unnamed: 0&#39;</span>, axis <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, inplace<span style="color:#f92672">=</span>True)
+df<span style="color:#f92672">.</span>head()
+</code></pre></div><p>Now lets get some more  information on the dataset.</p>
+<iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=6" title="Jovian Viewer" height="370" width="800" frameborder="0" scrolling="auto"></iframe>
+<iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=7" title="Jovian Viewer" height="348" width="800" frameborder="0" scrolling="auto"></iframe>
+<p>Lets divide the dataset into target and input variables and then split it into test and train data</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>drop(<span style="color:#e6db74">&#39;sales&#39;</span>, axis <span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>values
+y <span style="color:#f92672">=</span> df[[<span style="color:#e6db74">&#39;sales&#39;</span>]]<span style="color:#f92672">.</span>values
+
+<span style="color:#75715e"># Converting the numpy array features to pytorch tensors.</span>
+inputs <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>from_numpy(x)<span style="color:#f92672">.</span>float()
+targets <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>from_numpy(y)<span style="color:#f92672">.</span>float()
+
+<span style="color:#75715e"># Split Data into train and test</span>
+X_train,X_test,y_train,y_test <span style="color:#f92672">=</span> train_test_split(inputs,targets,test_size<span style="color:#f92672">=</span><span style="color:#ae81ff">0.20</span>,random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</code></pre></div><p>For the data split, I decided on 80–20 split for train and test set.</p>
+<h3 id="weights-and-bias">Weights and Bias</h3>
+<p>Our model is simply a function that performs a matrix multiplication of the  <code>inputs</code>  and the weights  <code>w</code>  (transposed) and adds the bias  <code>b</code>  (see equation 2). So we initialize the
+Weight matrix and bias</p>
+<iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=13" title="Jovian Viewer" height="225" width="800" frameborder="0" scrolling="auto"></iframe>
+<h3 id="model">Model</h3>
+<p>We can define the model as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">model</span>(x):
+    <span style="color:#66d9ef">return</span> x <span style="color:#960050;background-color:#1e0010">@</span> w<span style="color:#f92672">.</span>t() <span style="color:#f92672">+</span> b
+</code></pre></div><p><code>@</code>  represents matrix multiplication in PyTorch, and the  <code>.t</code>  method returns the transpose of a tensor. The matrix obtained by passing the input data into the model is a set of predictions for the target variables.(see equation 2)</p>
+<h3 id="loss-function">Loss Function</h3>
+<p>We need a way to evaluate how well our model is performing. We can compare the model&rsquo;s predictions with the actual targets, using the following method:</p>
+<ul>
+<li>Calculate the difference between the two matrices (preds and targets).</li>
+<li>Square all elements of the difference matrix to remove negative values.</li>
+<li>Calculate the average of the elements in the resulting matrix.</li>
+</ul>
+<p>The result is a single number, known as the  <strong>mean squared error</strong>  (MSE).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">mse</span>(t1, t2):
+    diff <span style="color:#f92672">=</span> t1<span style="color:#f92672">-</span>t2
+    <span style="color:#66d9ef">return</span> torch<span style="color:#f92672">.</span>sum(diff<span style="color:#f92672">*</span>diff)<span style="color:#f92672">/</span>diff<span style="color:#f92672">.</span>numel()
+</code></pre></div><p><code>torch.sum</code> returns the sum of all the elements in a tensor, and the <code>.numel</code> method returns the number of elements in a tensor.</p>
+<p>Let&rsquo;s compute the mean squared error for the current predictions of our model.</p>
+ <iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=20" title="Jovian Viewer" height="241" width="800" frameborder="0" scrolling="auto"></iframe>
+<p>Here’s how we can interpret the result: On average, each element in the prediction differs from the actual target by about 276.829088 (square root of the loss 76634.3438). And that’s pretty bad, considering the numbers we are trying to predict are themselves in the range 1-27. Also, the result is called the loss, because it indicates how bad the model is at predicting the target variables. Lower the loss, better the model.</p>
+<h3 id="gradient-descent">Gradient Descent</h3>
+<p>We’ll now minimize the <em>loss function</em> using the <a href="https://en.wikipedia.org/wiki/Gradient_descent">gradient descent</a> algorithm. Intuitively, gradient descent takes small, linear steps down the slope of a function in each feature dimension, with the size of each step determined by the partial derivative of the cost function with respect to that feature and a learning rate multiplier \(\eta\). If tuned properly, the algorithm converges on a global minimum by iteratively adjusting feature weights \(\theta\) of the cost function, as shown here for two feature dimensions:
+$$
+\theta_0  := \theta_0 - \alpha\frac{\partial}{\partial\theta_0} J(\theta_0,\theta_1)
+$$
+$$
+\theta_1 := \theta_1 - \eta\frac{\partial}{\partial\theta_1} J(\theta_0,\theta_1)
+$$</p>
+<p>Given that :
+$$
+h_\theta(x)  = \theta_0 + \theta_1x_1
+$$
+$$
+J(\theta)  = \frac{1}{2m}\sum\limits_{i = 1}^{m}(h_\theta(x^{(i)}) - y^{(i)})^2
+$$</p>
+<p>With PyTorch, we can automatically compute the gradient or derivative of the loss w.r.t. to the weights and biases, because they have  <code>requires_grad</code>  set to  <code>True</code>.</p>
+<h3 id="adjust-weights-and-biases-using-gradient-descent">Adjust weights and biases using gradient descent</h3>
+<p>We&rsquo;ll reduce the loss and improve our model using the gradient descent optimization algorithm, which has the following steps:</p>
+<ol>
+<li>
+<p>Generate predictions</p>
+</li>
+<li>
+<p>Calculate the loss</p>
+</li>
+<li>
+<p>Compute gradients w.r.t the weights and biases</p>
+</li>
+<li>
+<p>Adjust the weights by subtracting a small quantity proportional to the gradient</p>
+</li>
+<li>
+<p>Reset the gradients to zero</p>
+</li>
+</ol>
+<p>Let&rsquo;s implement the above step by step.</p>
+<iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=30" title="Jovian Viewer" height="529" width="800" frameborder="0" scrolling="auto"></iframe>
+<p>Let&rsquo;s take a look at the loss after 1 epoch.</p>
+<iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=35" title="Jovian Viewer" height="181" width="800" frameborder="0" scrolling="auto"></iframe>
+<p>We have already achieved a significant reduction in the loss, simply by adjusting the weights and biases slightly using gradient descent.</p>
+<h3 id="train-for-multiple-epochs">Train for multiple epochs</h3>
+<p>To reduce the loss further, we can repeat the process of adjusting the weights and biases using the gradients multiple times. Each iteration is called an epoch. Let&rsquo;s train the model for 1000 epochs.</p>
+<iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=38" title="Jovian Viewer" height="657" width="800" frameborder="0" scrolling="auto"></iframe>
+<p>Now lets see the final loss :</p>
+<iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=39" title="Jovian Viewer" height="209" width="800" frameborder="0" scrolling="auto"></iframe>
+<p>As you can see, the loss is now much lower than what we started out with.</p>
+<h3 id="testing">Testing</h3>
+<p>Let&rsquo;s look at the model&rsquo;s predictions and compare them with the targets.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">y_preds <span style="color:#f92672">=</span> model(X_test)
+</code></pre></div><iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=46" title="Jovian Viewer" height="141" width="800" frameborder="0" scrolling="auto"></iframe>
+<p>Lets plot actual vs predicted :</p>
+<iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=50" title="Jovian Viewer" height="517" width="800" frameborder="0" scrolling="auto"></iframe>
+<p>Now this whole process can be done using pytorch builtins.  Check it out <a href="%5Bhttps://jovian.ml/eklavya42/lr-advertisement-pytorch%5D(https://jovian.ml/eklavya42/lr-advertisement-pytorch)">here</a></p>
+]]></content>
+        </item>
         
         <item>
             <title>Object Detection using SIFT</title>
@@ -53,7 +197,7 @@ $$</p>
 
 <center>  <figcaption>Figure 1 : (top left) A grey-level image and the scale-space representations computed at scale levels t = 1,8 and 64.  
 Image from:  
-Encyclopedia of Computer Science and Engineering (Benjamin Wah, ed), John Wiley and Sons, Volume IV, pages 2495–2504, Hoboken, New Jersey, 2009.Steps for Object Detection with HOG</figcaption> </center>
+Encyclopedia of Computer Science and Engineering (Benjamin Wah, ed), John Wiley and Sons, Volume IV, pages 2495–2504, Hoboken, New Jersey, 2009.</figcaption> </center>
 <p>Now we have constructed a scale space. We do this to handle the multiscale nature of real-world objects.</p>
 <h3 id="laplacian-of-gaussian-log-approximations">Laplacian of Gaussian (LoG) approximations</h3>
 <p>Since we are finding the most stable image features we consider Lapcian of Gaussian. In detailed experimental comparisons, Mikolajczyk (2002) found that maxima and minima of Laplacian of Gaussian produce the most stable image features compared to a range of other possible image functions, such as the gradient, Hessian, or Harris corner function.</p>

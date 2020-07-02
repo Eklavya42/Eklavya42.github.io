@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sat, 16 Mar 2019 17:15:12 +0530</lastBuildDate>
+    <lastBuildDate>Thu, 04 Jun 2020 17:15:12 +0530</lastBuildDate>
     
 	<atom:link href="/categories/machine-learning/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Linear Regression</title>
+      <link>/posts/2020/06/linear-regression/</link>
+      <pubDate>Thu, 04 Jun 2020 17:15:12 +0530</pubDate>
+      
+      <guid>/posts/2020/06/linear-regression/</guid>
+      <description>This post will cover the linear regression implementation (From Scratch using Pytorch).
+Linear Regression Equation : Overview Linear regression attempts to fit a line of best fit to a data set, using one or more features as coefficients for a linear equation. It is an approach for modelling the relationship between dependent variable and independent variables.
+In a linear regression model, each target (dependent) variable is estimated to be a weighted sum of the input variables, offset by some constant, known as a bias :</description>
+    </item>
     
     <item>
       <title>Object Detection using SIFT</title>

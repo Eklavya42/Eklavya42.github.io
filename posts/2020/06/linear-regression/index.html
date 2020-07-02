@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="map[name:Eklavya Chopra]">
+<meta name="description" content="This post will cover the linear regression implementation (From Scratch using Pytorch).
+Linear Regression Equation : Overview Linear regression attempts to fit a line of best fit to a data set, using one or more features as coefficients for a linear equation. It is an approach for modelling the relationship between dependent variable and independent variables.
+In a linear regression model, each target (dependent) variable is estimated to be a weighted sum of the input variables, offset by some constant, known as a bias :" />
+<meta name="keywords" content=", machine learning" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="#252627" />
+<link rel="canonical" href="/posts/2020/06/linear-regression/" />
+
+<title>Eklavya Chopra</title>
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.fa08e087a93535b739f7181f05cc10b1b0fddfba0a5a2e0c8d2db8effb14a9fe.css">
+
+
+
+
+
+    <link rel='icon' href="img/logot.png" type='image/x-icon'>
+    
+    <meta name="msapplication-TileColor" content="#252627">
+    <meta name="theme-color" content="#252627">
+
+
+
+<meta itemprop="name" content="Linear Regression">
+<meta itemprop="description" content="This post will cover the linear regression implementation (From Scratch using Pytorch).
+Linear Regression Equation : Overview Linear regression attempts to fit a line of best fit to a data set, using one or more features as coefficients for a linear equation. It is an approach for modelling the relationship between dependent variable and independent variables.
+In a linear regression model, each target (dependent) variable is estimated to be a weighted sum of the input variables, offset by some constant, known as a bias :">
+<meta itemprop="datePublished" content="2020-06-04T17:15:12&#43;05:30" />
+<meta itemprop="dateModified" content="2020-06-04T17:15:12&#43;05:30" />
+<meta itemprop="wordCount" content="1126">
+<meta itemprop="image" content=""/>
+
+
+
+<meta itemprop="keywords" content="machine learning," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content=""/>
+
+<meta name="twitter:title" content="Linear Regression"/>
+<meta name="twitter:description" content="This post will cover the linear regression implementation (From Scratch using Pytorch).
+Linear Regression Equation : Overview Linear regression attempts to fit a line of best fit to a data set, using one or more features as coefficients for a linear equation. It is an approach for modelling the relationship between dependent variable and independent variables.
+In a linear regression model, each target (dependent) variable is estimated to be a weighted sum of the input variables, offset by some constant, known as a bias :"/>
+
+
+
+    <meta property="og:title" content="Linear Regression" />
+<meta property="og:description" content="This post will cover the linear regression implementation (From Scratch using Pytorch).
+Linear Regression Equation : Overview Linear regression attempts to fit a line of best fit to a data set, using one or more features as coefficients for a linear equation. It is an approach for modelling the relationship between dependent variable and independent variables.
+In a linear regression model, each target (dependent) variable is estimated to be a weighted sum of the input variables, offset by some constant, known as a bias :" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/2020/06/linear-regression/" />
+<meta property="og:image" content=""/>
+<meta property="article:published_time" content="2020-06-04T17:15:12+05:30" />
+<meta property="article:modified_time" content="2020-06-04T17:15:12+05:30" />
+
+
+
+
+
+    <meta property="article:section" content="machine learning" />
+
+
+
+    <meta property="article:published_time" content="2020-06-04 17:15:12 &#43;0530 IST" />
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.btn {
+  background-color:  #ff1a75;
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 20px;
+  margin: 0 auto;
+
+}
+
+ 
+.btn:hover {
+  background-color:  #b30047;
+}
+</style>
+
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">$ cd /home/</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner">
+      <li><a href="https://eklavya42.github.io/about/">About</a></li>
+      <li><a href="https://eklavya42.github.io/posts/">Posts</a></li>
+      <li><a href="https://eklavya42.github.io/resume/">Resume</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>6 minutes
+
+            
+
+            </p>
+        </div>
+
+        <article>
+            <h1 class="post-title">
+                <a href="/posts/2020/06/linear-regression/">Linear Regression</a>
+            </h1>
+
+            
+
+            <div class="post-content">
+                <p>This post will cover the linear regression implementation (From Scratch using Pytorch).</p>
+<h2 id="linear-regression-equation--overview">Linear Regression Equation : Overview</h2>
+<p>Linear regression attempts to fit a line of best fit to a data set, using one or more features as coefficients for a linear equation. It is an approach for modelling the relationship between <em>dependent</em> variable and <em>independent</em> variables.</p>
+<p>In a linear regression model, each target (dependent) variable   is estimated to be a weighted sum of the input variables, offset by some constant, known as a bias :</p>
+<p>$$
+Y = X.W^T + b \tag{1}
+$$</p>
+<p>Where,</p>
+<p>$$
+Y = \begin{bmatrix}y_1\\y_2\\.\\.\\y_n\end{bmatrix}_{n\times1}   X  = \begin{bmatrix}x_{11} &amp; x_{12} &amp; . &amp; . &amp; x_{1n} \\x_{21} &amp; x_{22} &amp; . &amp; . &amp; x_{2n} \\. &amp; . &amp; . &amp; . &amp; .\\.&amp; .&amp; . &amp; . &amp; .\\x_{n1} &amp; x_{n2} &amp; . &amp; . &amp; x_{nn}\end{bmatrix}_{n\times n} W^T = \begin{bmatrix}w_1\\ w_2\\.\\.\\w_n\end{bmatrix}_{n\times 1}  b  = \begin{bmatrix}b_1\\ b_2\\.\\.\\b_n\end{bmatrix}_{n\times 1}<br>
+$$</p>
+<p>We get the following expansion of the equation 1 :
+$$
+y_1 = w_1x_{11} + w_2x_{12} + . ..+ w_nx_{1n} + b_1
+$$</p>
+<p>Now, lets take an example for better explanation. Here, we take a look at advertisement data which has the following data :</p>
+<iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=5&hideInput=true" title="Jovian Viewer" height="216" width="800" frameborder="0" scrolling="auto"></iframe>
+<p>The above data consists of sales of a particular product along with advertisement budget for the product in TV, radio and newspaper media. Our objective is to increase the sales of the product and we can control the budget of advertisement. So, if we determine the relationship between advertisement budget and sales, we can figure out how to increase the sales of a product by introducing changes in the advertisement budget. Here, the <em>independent variables</em> \((x_i)\) will be the advertisement budget for each of the three media and the <em>dependent variable</em>\((y)\) will be the sales of the product. The relationship between independent and dependent variables in this data can be defined as :
+$$
+y = w_1x_1 + w_2x_2 + w_3x_3 + b \tag{2}
+$$
+where, \( y\) is sales and \(x_1,x_2,x_3\)  are advertisement budgets for TV, radio and newspaper respectively. The above equation can be written in matrix form as :
+$$
+y = X.W^T +b
+$$</p>
+<p>where
+$$
+X = \begin{bmatrix}x_1 &amp; x_2 &amp; x_3\end{bmatrix}_{1\times 3} \hspace{1cm}  W = \begin{bmatrix}w_1 &amp; w_2 &amp; w_3\end{bmatrix}_{1\times 3}
+$$</p>
+<p>Now that we have discussed the linear regression equation, lets move on towards implementation and discuss the concepts implemented.</p>
+<h2 id="implementation-from-scratch-using-pytorch">Implementation from Scratch (using Pytorch)</h2>
+<h3 id="importing-relevant-libraries">Importing relevant libraries</h3>
+<iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=1" title="Jovian Viewer" height="248" width="800" frameborder="0" scrolling="auto"></iframe>
+<h3 id="dataset">Dataset</h3>
+<p>I am using Advertisement Data which was also used in <a href="http://faculty.marshall.usc.edu/gareth-james/ISL/data.html">ISLR book</a>.</p>
+<iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=3" title="Jovian Viewer" height="183" width="800" frameborder="0" scrolling="auto"></iframe>
+<iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch/v/2&cellId=4" title="Jovian Viewer" height="350" width="800" frameborder="0" scrolling="auto"></iframe>
+<p>We can remove the inbuilt index in the data.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># removing the inbuilt index column</span>
+df<span style="color:#f92672">.</span>drop(<span style="color:#e6db74">&#39;Unnamed: 0&#39;</span>, axis <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, inplace<span style="color:#f92672">=</span>True)
+df<span style="color:#f92672">.</span>head()
+</code></pre></div><p>Now lets get some more  information on the dataset.</p>
+<iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=6" title="Jovian Viewer" height="370" width="800" frameborder="0" scrolling="auto"></iframe>
+<iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=7" title="Jovian Viewer" height="348" width="800" frameborder="0" scrolling="auto"></iframe>
+<p>Lets divide the dataset into target and input variables and then split it into test and train data</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>drop(<span style="color:#e6db74">&#39;sales&#39;</span>, axis <span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>values
+y <span style="color:#f92672">=</span> df[[<span style="color:#e6db74">&#39;sales&#39;</span>]]<span style="color:#f92672">.</span>values
+
+<span style="color:#75715e"># Converting the numpy array features to pytorch tensors.</span>
+inputs <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>from_numpy(x)<span style="color:#f92672">.</span>float()
+targets <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>from_numpy(y)<span style="color:#f92672">.</span>float()
+
+<span style="color:#75715e"># Split Data into train and test</span>
+X_train,X_test,y_train,y_test <span style="color:#f92672">=</span> train_test_split(inputs,targets,test_size<span style="color:#f92672">=</span><span style="color:#ae81ff">0.20</span>,random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</code></pre></div><p>For the data split, I decided on 80–20 split for train and test set.</p>
+<h3 id="weights-and-bias">Weights and Bias</h3>
+<p>Our model is simply a function that performs a matrix multiplication of the  <code>inputs</code>  and the weights  <code>w</code>  (transposed) and adds the bias  <code>b</code>  (see equation 2). So we initialize the
+Weight matrix and bias</p>
+<iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=13" title="Jovian Viewer" height="225" width="800" frameborder="0" scrolling="auto"></iframe>
+<h3 id="model">Model</h3>
+<p>We can define the model as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">model</span>(x):
+    <span style="color:#66d9ef">return</span> x <span style="color:#960050;background-color:#1e0010">@</span> w<span style="color:#f92672">.</span>t() <span style="color:#f92672">+</span> b
+</code></pre></div><p><code>@</code>  represents matrix multiplication in PyTorch, and the  <code>.t</code>  method returns the transpose of a tensor. The matrix obtained by passing the input data into the model is a set of predictions for the target variables.(see equation 2)</p>
+<h3 id="loss-function">Loss Function</h3>
+<p>We need a way to evaluate how well our model is performing. We can compare the model&rsquo;s predictions with the actual targets, using the following method:</p>
+<ul>
+<li>Calculate the difference between the two matrices (preds and targets).</li>
+<li>Square all elements of the difference matrix to remove negative values.</li>
+<li>Calculate the average of the elements in the resulting matrix.</li>
+</ul>
+<p>The result is a single number, known as the  <strong>mean squared error</strong>  (MSE).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">mse</span>(t1, t2):
+    diff <span style="color:#f92672">=</span> t1<span style="color:#f92672">-</span>t2
+    <span style="color:#66d9ef">return</span> torch<span style="color:#f92672">.</span>sum(diff<span style="color:#f92672">*</span>diff)<span style="color:#f92672">/</span>diff<span style="color:#f92672">.</span>numel()
+</code></pre></div><p><code>torch.sum</code> returns the sum of all the elements in a tensor, and the <code>.numel</code> method returns the number of elements in a tensor.</p>
+<p>Let&rsquo;s compute the mean squared error for the current predictions of our model.</p>
+ <iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=20" title="Jovian Viewer" height="241" width="800" frameborder="0" scrolling="auto"></iframe>
+<p>Here’s how we can interpret the result: On average, each element in the prediction differs from the actual target by about 276.829088 (square root of the loss 76634.3438). And that’s pretty bad, considering the numbers we are trying to predict are themselves in the range 1-27. Also, the result is called the loss, because it indicates how bad the model is at predicting the target variables. Lower the loss, better the model.</p>
+<h3 id="gradient-descent">Gradient Descent</h3>
+<p>We’ll now minimize the <em>loss function</em> using the <a href="https://en.wikipedia.org/wiki/Gradient_descent">gradient descent</a> algorithm. Intuitively, gradient descent takes small, linear steps down the slope of a function in each feature dimension, with the size of each step determined by the partial derivative of the cost function with respect to that feature and a learning rate multiplier \(\eta\). If tuned properly, the algorithm converges on a global minimum by iteratively adjusting feature weights \(\theta\) of the cost function, as shown here for two feature dimensions:
+$$
+\theta_0  := \theta_0 - \alpha\frac{\partial}{\partial\theta_0} J(\theta_0,\theta_1)
+$$
+$$
+\theta_1 := \theta_1 - \eta\frac{\partial}{\partial\theta_1} J(\theta_0,\theta_1)
+$$</p>
+<p>Given that :
+$$
+h_\theta(x)  = \theta_0 + \theta_1x_1
+$$
+$$
+J(\theta)  = \frac{1}{2m}\sum\limits_{i = 1}^{m}(h_\theta(x^{(i)}) - y^{(i)})^2
+$$</p>
+<p>With PyTorch, we can automatically compute the gradient or derivative of the loss w.r.t. to the weights and biases, because they have  <code>requires_grad</code>  set to  <code>True</code>.</p>
+<h3 id="adjust-weights-and-biases-using-gradient-descent">Adjust weights and biases using gradient descent</h3>
+<p>We&rsquo;ll reduce the loss and improve our model using the gradient descent optimization algorithm, which has the following steps:</p>
+<ol>
+<li>
+<p>Generate predictions</p>
+</li>
+<li>
+<p>Calculate the loss</p>
+</li>
+<li>
+<p>Compute gradients w.r.t the weights and biases</p>
+</li>
+<li>
+<p>Adjust the weights by subtracting a small quantity proportional to the gradient</p>
+</li>
+<li>
+<p>Reset the gradients to zero</p>
+</li>
+</ol>
+<p>Let&rsquo;s implement the above step by step.</p>
+<iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=30" title="Jovian Viewer" height="529" width="800" frameborder="0" scrolling="auto"></iframe>
+<p>Let&rsquo;s take a look at the loss after 1 epoch.</p>
+<iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=35" title="Jovian Viewer" height="181" width="800" frameborder="0" scrolling="auto"></iframe>
+<p>We have already achieved a significant reduction in the loss, simply by adjusting the weights and biases slightly using gradient descent.</p>
+<h3 id="train-for-multiple-epochs">Train for multiple epochs</h3>
+<p>To reduce the loss further, we can repeat the process of adjusting the weights and biases using the gradients multiple times. Each iteration is called an epoch. Let&rsquo;s train the model for 1000 epochs.</p>
+<iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=38" title="Jovian Viewer" height="657" width="800" frameborder="0" scrolling="auto"></iframe>
+<p>Now lets see the final loss :</p>
+<iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=39" title="Jovian Viewer" height="209" width="800" frameborder="0" scrolling="auto"></iframe>
+<p>As you can see, the loss is now much lower than what we started out with.</p>
+<h3 id="testing">Testing</h3>
+<p>Let&rsquo;s look at the model&rsquo;s predictions and compare them with the targets.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">y_preds <span style="color:#f92672">=</span> model(X_test)
+</code></pre></div><iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=46" title="Jovian Viewer" height="141" width="800" frameborder="0" scrolling="auto"></iframe>
+<p>Lets plot actual vs predicted :</p>
+<iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=50" title="Jovian Viewer" height="517" width="800" frameborder="0" scrolling="auto"></iframe>
+<p>Now this whole process can be done using pytorch builtins.  Check it out <a href="%5Bhttps://jovian.ml/eklavya42/lr-advertisement-pytorch%5D(https://jovian.ml/eklavya42/lr-advertisement-pytorch)">here</a></p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="tags/machine-learning">machine learning</a></span>
+                </p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1126 Words</p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-06-04 17:15 &#43;0530</p>
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h"></span>
+                    <hr />
+                </div>
+
+                <div class="pagination__buttons">
+                    
+
+                    
+                        <span class="button next">
+                            <a href="/posts/2019/03/object-detection-using-sift/">
+                                <span class="button__text">Object Detection using SIFT</span>
+                                <span class="button__icon">→</span>
+                            </a>
+                        </span>
+                    
+                </div>
+            </div>
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="">Eklavya Chopra</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.5fa2ae02ce99d1bf5e7b4808c83c16bc7f5b94afaadb74485196b14cf6871228d9737fd0596f4258c3b38ec7ffeb5a3ba6b429fc2db125df55809e348390e448.js" integrity="sha512-X6KuAs6Z0b9ee0gIyDwWvH9blK&#43;q23RIUZaxTPaHEijZc3/QWW9CWMOzjsf/61o7prQp/C2xJd9VgJ40g5DkSA=="></script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+
+
+    </body>
+</html>
