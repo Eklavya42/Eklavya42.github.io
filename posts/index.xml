@@ -100,7 +100,7 @@ Weight matrix and bias</p>
 <h3 id="gradient-descent">Gradient Descent</h3>
 <p>We’ll now minimize the <em>loss function</em> using the <a href="https://en.wikipedia.org/wiki/Gradient_descent">gradient descent</a> algorithm. Intuitively, gradient descent takes small, linear steps down the slope of a function in each feature dimension, with the size of each step determined by the partial derivative of the cost function with respect to that feature and a learning rate multiplier \(\eta\). If tuned properly, the algorithm converges on a global minimum by iteratively adjusting feature weights \(\theta\) of the cost function, as shown here for two feature dimensions:
 $$
-\theta_0  := \theta_0 - \alpha\frac{\partial}{\partial\theta_0} J(\theta_0,\theta_1)
+\theta_0  := \theta_0 - \eta\frac{\partial}{\partial\theta_0} J(\theta_0,\theta_1)
 $$
 $$
 \theta_1 := \theta_1 - \eta\frac{\partial}{\partial\theta_1} J(\theta_0,\theta_1)
@@ -112,6 +112,7 @@ $$
 $$
 J(\theta)  = \frac{1}{2m}\sum\limits_{i = 1}^{m}(h_\theta(x^{(i)}) - y^{(i)})^2
 $$</p>
+<p>For more about it read here : <a href="https://github.com/cleor41/CS229_Notes/blob/master/lectures/cs229-notes1.pdf" target="_blank">CS229_Notes</a></p>
 <p>With PyTorch, we can automatically compute the gradient or derivative of the loss w.r.t. to the weights and biases, because they have  <code>requires_grad</code>  set to  <code>True</code>.</p>
 <h3 id="adjust-weights-and-biases-using-gradient-descent">Adjust weights and biases using gradient descent</h3>
 <p>We&rsquo;ll reduce the loss and improve our model using the gradient descent optimization algorithm, which has the following steps:</p>
@@ -149,7 +150,10 @@ $$</p>
 </code></pre></div><iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=46" title="Jovian Viewer" height="141" width="800" frameborder="0" scrolling="auto"></iframe>
 <p>Lets plot actual vs predicted :</p>
 <iframe src="https://jovian.ml/embed?url=https://jovian.ml/eklavya42/lr-advertisement-pytorch-scratch/v/2&cellId=50" title="Jovian Viewer" height="517" width="800" frameborder="0" scrolling="auto"></iframe>
-<p>Now this whole process can be done using pytorch builtins.  Check it out <a href="%5Bhttps://jovian.ml/eklavya42/lr-advertisement-pytorch%5D(https://jovian.ml/eklavya42/lr-advertisement-pytorch)">here</a></p>
+<p>Now this whole process can be done using pytorch builtins.  Check it out :</p>
+<center>
+<a href="https://jovian.ml/eklavya42/lr-advertisement-pytorch" target="_blank">Linear Regression Using Pytorch Builtins</a>
+</center>
 ]]></content>
         </item>
         
