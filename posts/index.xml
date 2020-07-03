@@ -1,20 +1,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Posts on Hi, I&#39;m Eklavya Chopra</title>
-        <link>/posts/</link>
+        <link>https://eklavyachopra.com/posts/</link>
         <description>Recent content in Posts on Hi, I&#39;m Eklavya Chopra</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
         <lastBuildDate>Thu, 04 Jun 2020 17:15:12 +0530</lastBuildDate>
-        <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://eklavyachopra.com/posts/index.xml" rel="self" type="application/rss+xml" />
         
         <item>
             <title>Linear Regression</title>
-            <link>/posts/2020/06/linear-regression/</link>
+            <link>https://eklavyachopra.com/posts/2020/06/linear-regression/</link>
             <pubDate>Thu, 04 Jun 2020 17:15:12 +0530</pubDate>
             
-            <guid>/posts/2020/06/linear-regression/</guid>
+            <guid>https://eklavyachopra.com/posts/2020/06/linear-regression/</guid>
             <description>This post will cover the linear regression implementation (From Scratch using Pytorch).
 Linear Regression Equation : Overview Linear regression attempts to fit a line of best fit to a data set, using one or more features as coefficients for a linear equation. It is an approach for modelling the relationship between dependent variable and independent variables.
 In a linear regression model, each target (dependent) variable is estimated to be a weighted sum of the input variables, offset by some constant, known as a bias :</description>
@@ -159,10 +159,10 @@ $$</p>
         
         <item>
             <title>Object Detection using SIFT</title>
-            <link>/posts/2019/03/object-detection-using-sift/</link>
+            <link>https://eklavyachopra.com/posts/2019/03/object-detection-using-sift/</link>
             <pubDate>Sat, 16 Mar 2019 17:15:12 +0530</pubDate>
             
-            <guid>/posts/2019/03/object-detection-using-sift/</guid>
+            <guid>https://eklavyachopra.com/posts/2019/03/object-detection-using-sift/</guid>
             <description>Object Detection using SIFT algorithm SIFT (Scale Invariant Feature Transform) is a feature detection algorithm in computer vision to detect and describe local features in images. It was created by David Lowe from the University British Columbia in 1999. David Lowe presents the SIFT algorithm in his original paper titled Distinctive Image Features from Scale-Invariant Keypoints.
 Image features extracted by SIFT are reasonably invariant to various changes such as their llumination image noise, rotation, scaling, and small changes in viewpoint.</description>
             <content type="html"><![CDATA[<h1 id="object-detection-using-sift-algorithm">Object Detection using SIFT algorithm</h1>
@@ -481,10 +481,10 @@ cv2<span style="color:#f92672">.</span>destroyAllWindows()
         
         <item>
             <title>Face Detection using Histogram of Oriented Gradients</title>
-            <link>/posts/2019/03/face-detection-using-histogram-of-oriented-gradients/</link>
+            <link>https://eklavyachopra.com/posts/2019/03/face-detection-using-histogram-of-oriented-gradients/</link>
             <pubDate>Mon, 11 Mar 2019 17:15:12 +0530</pubDate>
             
-            <guid>/posts/2019/03/face-detection-using-histogram-of-oriented-gradients/</guid>
+            <guid>https://eklavyachopra.com/posts/2019/03/face-detection-using-histogram-of-oriented-gradients/</guid>
             <description>What is Histogram of Oriented Gradients (HOG)? Navneet Dalal and Bill Triggs introduced Histogram of Oriented Gradients(HOG) features in 2005. Histogram of Oriented Gradients (HOG) is a feature descriptor used in image processing, mainly for object detection. A feature descriptor is a representation of an image or an image patch that simplifies the image by extracting useful information from it.
 The principle behind the histogram of oriented gradients descriptor is that local object appearance and shape within an image can be described by the distribution of intensity gradients or edge directions.</description>
             <content type="html"><![CDATA[<h2 id="what-is-histogram-of-oriented-gradients-hog">What is Histogram of Oriented Gradients (HOG)?</h2>
@@ -678,10 +678,10 @@ labels <span style="color:#f92672">=</span> model<span style="color:#f92672">.</
         
         <item>
             <title>Hopfield Network</title>
-            <link>/posts/2019/01/hopfield-network/</link>
+            <link>https://eklavyachopra.com/posts/2019/01/hopfield-network/</link>
             <pubDate>Sat, 12 Jan 2019 00:00:00 +0000</pubDate>
             
-            <guid>/posts/2019/01/hopfield-network/</guid>
+            <guid>https://eklavyachopra.com/posts/2019/01/hopfield-network/</guid>
             <description>Hopfield Network is a recurrent neural network with bipolar threshold neurons. In this article, we will go through in depth along with an implementation. Before going into Hopfield network, we will revise basic ideas like Neural network and perceptron.
 A neural network is a mathematical model or computational model inspired by biological neural networks. It consists of an interconnected group of artiﬁcial neurons. The sructure and functioning of the central nervous system constituing neurons, axons, dentrites and syanpses which make up the processing parts of the biological neural networks were the original inspiration that led to the developement of computational models of neural networks.</description>
             <content type="html"><![CDATA[<p><strong>Hopfield Network</strong>  is a recurrent neural network with bipolar threshold neurons. In this article, we will go through in depth along with an implementation. Before going into Hopfield network, we will revise basic ideas like Neural network and perceptron.</p>
@@ -826,10 +826,10 @@ hamming_distance
         
         <item>
             <title>Object Detection Techniques</title>
-            <link>/posts/2018/04/object-detection-techniques/</link>
+            <link>https://eklavyachopra.com/posts/2018/04/object-detection-techniques/</link>
             <pubDate>Mon, 02 Apr 2018 00:00:00 +0000</pubDate>
             
-            <guid>/posts/2018/04/object-detection-techniques/</guid>
+            <guid>https://eklavyachopra.com/posts/2018/04/object-detection-techniques/</guid>
             <description>In this article, we will understand what is object detection, why we need to do object detection and the basic idea behind various techniques used to solved this problem. We start with the basic techniques like Viola Jones face detector to some of the advanced techniques like Single Shot Detector. Some the the techniques are:
  Viola Jones face detector Object Detection using Histogram of Oriented Gradients (HOG) Features Scale-invariant feature transform (SIFT) AlexNet Region-based Convolutional Network (R-CNN) You Only Look Once (YOLO) Single Shot Detector (SSD)  What is Object Detection?</description>
             <content type="html"><![CDATA[<p>In this article, we will understand what is object detection, why we need to do object detection and the basic idea behind various techniques used to solved this problem. We start with the basic techniques like Viola Jones face detector to some of the advanced techniques like Single Shot Detector. Some the the techniques are:</p>

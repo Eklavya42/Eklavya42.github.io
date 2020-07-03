@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Hi, I&#39;m Eklavya Chopra</title>
-    <link>/categories/</link>
+    <link>https://eklavyachopra.com/categories/</link>
     <description>Recent content in Categories on Hi, I&#39;m Eklavya Chopra</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Thu, 04 Jun 2020 17:15:12 +0530</lastBuildDate>
     
-	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://eklavyachopra.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>machine learning</title>
-      <link>/categories/machine-learning/</link>
+      <link>https://eklavyachopra.com/categories/machine-learning/</link>
       <pubDate>Thu, 04 Jun 2020 17:15:12 +0530</pubDate>
       
-      <guid>/categories/machine-learning/</guid>
+      <guid>https://eklavyachopra.com/categories/machine-learning/</guid>
       <description></description>
     </item>
     
     <item>
       <title>general</title>
-      <link>/categories/general/</link>
+      <link>https://eklavyachopra.com/categories/general/</link>
       <pubDate>Mon, 02 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/categories/general/</guid>
+      <guid>https://eklavyachopra.com/categories/general/</guid>
       <description></description>
     </item>
     

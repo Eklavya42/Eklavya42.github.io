@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>general on Hi, I&#39;m Eklavya Chopra</title>
-    <link>/categories/general/</link>
+    <link>https://eklavyachopra.com/categories/general/</link>
     <description>Recent content in general on Hi, I&#39;m Eklavya Chopra</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Mon, 02 Apr 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/categories/general/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://eklavyachopra.com/categories/general/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Object Detection Techniques</title>
-      <link>/posts/2018/04/object-detection-techniques/</link>
+      <link>https://eklavyachopra.com/posts/2018/04/object-detection-techniques/</link>
       <pubDate>Mon, 02 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2018/04/object-detection-techniques/</guid>
+      <guid>https://eklavyachopra.com/posts/2018/04/object-detection-techniques/</guid>
       <description>In this article, we will understand what is object detection, why we need to do object detection and the basic idea behind various techniques used to solved this problem. We start with the basic techniques like Viola Jones face detector to some of the advanced techniques like Single Shot Detector. Some the the techniques are:
  Viola Jones face detector Object Detection using Histogram of Oriented Gradients (HOG) Features Scale-invariant feature transform (SIFT) AlexNet Region-based Convolutional Network (R-CNN) You Only Look Once (YOLO) Single Shot Detector (SSD)  What is Object Detection?</description>
     </item>

@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Series on Hi, I&#39;m Eklavya Chopra</title>
-    <link>/series/</link>
+    <link>https://eklavyachopra.com/series/</link>
     <description>Recent content in Series on Hi, I&#39;m Eklavya Chopra</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Thu, 04 Jun 2020 17:15:12 +0530</lastBuildDate>
     
-	<atom:link href="/series/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://eklavyachopra.com/series/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Machine Learning</title>
-      <link>/series/machine-learning/</link>
+      <link>https://eklavyachopra.com/series/machine-learning/</link>
       <pubDate>Thu, 04 Jun 2020 17:15:12 +0530</pubDate>
       
-      <guid>/series/machine-learning/</guid>
+      <guid>https://eklavyachopra.com/series/machine-learning/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Deep Learning</title>
-      <link>/series/deep-learning/</link>
+      <link>https://eklavyachopra.com/series/deep-learning/</link>
       <pubDate>Mon, 11 Mar 2019 17:15:12 +0530</pubDate>
       
-      <guid>/series/deep-learning/</guid>
+      <guid>https://eklavyachopra.com/series/deep-learning/</guid>
       <description></description>
     </item>
     

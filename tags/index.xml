@@ -2,49 +2,49 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Hi, I&#39;m Eklavya Chopra</title>
-    <link>/tags/</link>
+    <link>https://eklavyachopra.com/tags/</link>
     <description>Recent content in Tags on Hi, I&#39;m Eklavya Chopra</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Thu, 04 Jun 2020 17:15:12 +0530</lastBuildDate>
     
-	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://eklavyachopra.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>machine learning</title>
-      <link>/tags/machine-learning/</link>
+      <link>https://eklavyachopra.com/tags/machine-learning/</link>
       <pubDate>Thu, 04 Jun 2020 17:15:12 +0530</pubDate>
       
-      <guid>/tags/machine-learning/</guid>
+      <guid>https://eklavyachopra.com/tags/machine-learning/</guid>
       <description></description>
     </item>
     
     <item>
       <title>deep learning</title>
-      <link>/tags/deep-learning/</link>
+      <link>https://eklavyachopra.com/tags/deep-learning/</link>
       <pubDate>Sat, 16 Mar 2019 17:15:12 +0530</pubDate>
       
-      <guid>/tags/deep-learning/</guid>
+      <guid>https://eklavyachopra.com/tags/deep-learning/</guid>
       <description></description>
     </item>
     
     <item>
       <title>object detection</title>
-      <link>/tags/object-detection/</link>
+      <link>https://eklavyachopra.com/tags/object-detection/</link>
       <pubDate>Sat, 16 Mar 2019 17:15:12 +0530</pubDate>
       
-      <guid>/tags/object-detection/</guid>
+      <guid>https://eklavyachopra.com/tags/object-detection/</guid>
       <description></description>
     </item>
     
     <item>
       <title>face detection</title>
-      <link>/tags/face-detection/</link>
+      <link>https://eklavyachopra.com/tags/face-detection/</link>
       <pubDate>Mon, 11 Mar 2019 17:15:12 +0530</pubDate>
       
-      <guid>/tags/face-detection/</guid>
+      <guid>https://eklavyachopra.com/tags/face-detection/</guid>
       <description></description>
     </item>
     
