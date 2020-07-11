@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bioinformatics on Hi, I&#39;m Eklavya Chopra</title>
+    <link>https://eklavyachopra.com/categories/bioinformatics/</link>
+    <description>Recent content in Bioinformatics on Hi, I&#39;m Eklavya Chopra</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Sat, 11 Jul 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://eklavyachopra.com/categories/bioinformatics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Molecular Docking using Chimera</title>
+      <link>https://eklavyachopra.com/posts/2020/07/molecular-docking-using-chimera/</link>
+      <pubDate>Sat, 11 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://eklavyachopra.com/posts/2020/07/molecular-docking-using-chimera/</guid>
+      <description>In general, Molecular docking refers to a computational algorithm that tries to find the best binding pose between two molecules.
+Many docking programs have been developed. Although these differ in the algorithms used, every docking program must be able to perform three (not necessarily distinct) basic operations:
+ Generate a reasonable candidate ligand conformations. Place the ligand into the binding site Assign a score or fitness value to the docked conformation.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="map[name:Eklavya Chopra]">
+<meta name="description" content="In general, Molecular docking refers to a computational algorithm that tries to find the best binding pose between two molecules.
+Many docking programs have been developed. Although these differ in the algorithms used, every docking program must be able to perform three (not necessarily distinct) basic operations:
+ Generate a reasonable candidate ligand conformations. Place the ligand into the binding site Assign a score or fitness value to the docked conformation." />
+<meta name="keywords" content=", Bioinformatics, Structural analysis, Molecular Docking" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="#252627" />
+<link rel="canonical" href="https://eklavyachopra.com/posts/2020/07/molecular-docking-using-chimera/" />
+
+<title>Eklavya Chopra</title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://eklavyachopra.com/main.fe667b20373cb9960b2368c40da8e8501fb1141f735c4794cf54cb81a5a2b821.css">
+
+
+
+
+
+    <link rel='icon' href="img/logot.png" type='image/x-icon'>
+    
+    <meta name="msapplication-TileColor" content="#252627">
+    <meta name="theme-color" content="#252627">
+
+
+
+<meta itemprop="name" content="Molecular Docking using Chimera">
+<meta itemprop="description" content="In general, Molecular docking refers to a computational algorithm that tries to find the best binding pose between two molecules.
+Many docking programs have been developed. Although these differ in the algorithms used, every docking program must be able to perform three (not necessarily distinct) basic operations:
+ Generate a reasonable candidate ligand conformations. Place the ligand into the binding site Assign a score or fitness value to the docked conformation.">
+<meta itemprop="datePublished" content="2020-07-11T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-07-11T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="485">
+<meta itemprop="image" content="https://eklavyachopra.com/"/>
+
+
+
+<meta itemprop="keywords" content="Bioinformatics,Structural analysis,Molecular Docking," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://eklavyachopra.com/"/>
+
+<meta name="twitter:title" content="Molecular Docking using Chimera"/>
+<meta name="twitter:description" content="In general, Molecular docking refers to a computational algorithm that tries to find the best binding pose between two molecules.
+Many docking programs have been developed. Although these differ in the algorithms used, every docking program must be able to perform three (not necessarily distinct) basic operations:
+ Generate a reasonable candidate ligand conformations. Place the ligand into the binding site Assign a score or fitness value to the docked conformation."/>
+
+
+
+    <meta property="og:title" content="Molecular Docking using Chimera" />
+<meta property="og:description" content="In general, Molecular docking refers to a computational algorithm that tries to find the best binding pose between two molecules.
+Many docking programs have been developed. Although these differ in the algorithms used, every docking program must be able to perform three (not necessarily distinct) basic operations:
+ Generate a reasonable candidate ligand conformations. Place the ligand into the binding site Assign a score or fitness value to the docked conformation." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eklavyachopra.com/posts/2020/07/molecular-docking-using-chimera/" />
+<meta property="og:image" content="https://eklavyachopra.com/"/>
+<meta property="article:published_time" content="2020-07-11T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-07-11T00:00:00+00:00" />
+
+
+
+
+
+    <meta property="article:section" content="Bioinformatics" />
+
+    <meta property="article:section" content="Structural analysis" />
+
+
+
+    <meta property="article:published_time" content="2020-07-11 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.btn {
+  background-color:  #ff1a75;
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 20px;
+  margin: 0 auto;
+
+}
+
+ 
+.btn:hover {
+  background-color:  #b30047;
+}
+</style>
+
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://eklavyachopra.com/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">$ cd /home/</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner">
+      <li><a href="https://eklavya42.github.io/about/">About</a></li>
+      <li><a href="https://eklavya42.github.io/posts/">Posts</a></li>
+      <li><a href="https://eklavya42.github.io/resume/">Resume</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>3 minutes
+
+            
+
+            </p>
+        </div>
+
+        <article>
+            <h1 class="post-title">
+                <a href="https://eklavyachopra.com/posts/2020/07/molecular-docking-using-chimera/">Molecular Docking using Chimera</a>
+            </h1>
+
+            
+
+            <div class="post-content">
+                <p>In general, Molecular docking refers to a computational algorithm that tries to find the best binding pose between two molecules.</p>
+<p>Many docking programs have been developed. Although these differ in the algorithms used, every docking program must be able to perform three (not necessarily distinct) basic operations:</p>
+<ol>
+<li>Generate a reasonable candidate ligand conformations.</li>
+<li>Place the ligand into the binding site</li>
+<li>Assign a score or fitness value to the docked conformation.</li>
+</ol>
+<p>So, now we will start Molecular Docking of Chymotrypsin C (CTRC) with Doxorubicin</p>
+</br>
+
+    <img src="https://i.imgur.com/O1XfJyy.png"  alt="Chymotrypsin C"  class="center"  />
+
+
+<center>  <figcaption>Chymotrypsin C visualised | PDB ID : 4H4F</figcaption> </center>
+
+    <img src="https://i.imgur.com/QqsXkVL.png"  alt="Doxorubicin"  class="center"  />
+
+
+<center>  <figcaption>Doxorubicin visualised | PubChem ID : 31703</figcaption> </center>
+<p></br></br></p>
+<p>Lets, see the flowchart for the process we will go through.</p>
+</br>
+
+    <img src="https://i.imgur.com/y8MZJXp.png"  alt="Flowchart"  class="center"  />
+
+
+</br>
+<center>  <figcaption>Flowchart for Molecular Docking in Chimera</figcaption> </center>
+<p></br></br></p>
+<h2 id="ligand-preparation">Ligand Preparation</h2>
+<p>We will now build our ligand i.e. Doxorubicin and optimize it for docking.</p>
+<ol>
+<li>Open UCSF Chimera</li>
+<li>Open PubChem in the browser (<a href="https://pubchem.ncbi.nlm.nih.gov/">https://pubchem.ncbi.nlm.nih.gov/</a>) and type Doxorubicin.</li>
+<li>Get the PubChem ID (PubChem  CID: 31703 for Doxorubicin).</li>
+<li>Go to UCSF Chimera and select Files in the topleft corner. Then Files &ndash;&gt; Fetch by ID &ndash;&gt; Select Pubchem ID and insert the ID for the ligand.</li>
+<li>Now our ligand structure is loaded.</li>
+<li>Again Tools -&gt; Structure Editing -&gt; Minimize Structure (here set steepest descent steps: 100 and Conjugate gradient steps:100) -&gt; Minimize Now Add hydrogens will pop-up click OK, then Assign Charges to minimize select Gasteiger and enter OK. This will show the net charge of the molecule.Click OK.</li>
+<li>Save ligand to the working directory: save as Doxo.mol2</li>
+</ol>
+<h2 id="protein-preparation">Protein Preparation</h2>
+<ol start="8">
+<li>Open the PDB database (<a href="http://www.rcsb.org/pdb/home/home.do">http://www.rcsb.org/pdb/home/home.do</a>) and type 4H4F -&gt; Download files -&gt; PDB format -&gt; save as 4H4F.pdb (in the working directory)</li>
+<li>Now go to UCSF Chimera again. Go to File -&gt; Open -&gt; 4H4F.pdb</li>
+<li>Tools -&gt; Surface/Binding analysis –&gt; DockPrep.</li>
+<li>Now Remove solvent and fix non-standard residues, Add hydrogens (We can specify the protonation state for specific residues if needed) and charges (Protein charges are assigned using an AMBER force field).</li>
+<li>Save a mol2 file of the protein molecule as 4H4F.mol2 (For now we are retaining the ligand present in the protein molecule)</li>
+</ol>
+<h2 id="dock-prep-and-run">Dock Prep and Run</h2>
+<ol start="11">
+<li>In Tools -&gt; Surface/ Binding Analysis -&gt; AutoDock Vina</li>
+<li>Set Output file location (current working directory) -&gt;4H4F_Doxo</li>
+<li>In the receptor search volume options: set the listed values in the columns so that the protein is covered by the box (blind docking)</li>
+<li>Set Executable location (current working directory)- locate vina.exe file</li>
+<li>Click OK (only once).</li>
+<li>Now molecular docking has been started and once the run is completed ViewDock interface will open.</li>
+</ol>
+<h2 id="analysis-of-the-docked-poses">Analysis of the docked poses</h2>
+<ol start="17">
+<li>“ViewDock” interface will show the tabular list of poses
+</br></li>
+</ol>
+
+    <img src="https://i.imgur.com/1gOoDt9.png"  alt="ViewDock"  class="center"  />
+
+
+</br>
+<center>  <figcaption>ViewDock Box showing the analysis of different conformations</figcaption> </center>
+</br>
+</br>
+<ol start="18">
+<li>Now click on Hbonds -&gt; Add count to entire receptor Choose Intermodel Hbonds. Relax constraints can be changed (optional) Now conformers can be sorted by Hydrogen bonds formed.</li>
+</ol>
+
+    <img src="https://i.imgur.com/dwfCYzJ.png"  alt="Docking Model"  class="center"  />
+
+
+<center>  <figcaption>One of the Dockings performed by Chimera</figcaption> </center>
+</br>
+<p>Check this out for a video based tutorial :</p>
+<center>
+<a href="https://youtu.be/rVXrbTeaywc" target="_blank">How to Study Protein-Ligand Interaction through Molecular Docking</a>
+</center>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://eklavyachopra.com/tags/bioinformatics">Bioinformatics</a></span><span class="tag"><a href="https://eklavyachopra.com/tags/structural-analysis">Structural analysis</a></span><span class="tag"><a href="https://eklavyachopra.com/tags/molecular-docking">Molecular Docking</a></span>
+                </p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>485 Words</p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-07-11 05:30 &#43;0530</p>
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h"></span>
+                    <hr />
+                </div>
+
+                <div class="pagination__buttons">
+                    
+
+                    
+                        <span class="button next">
+                            <a href="https://eklavyachopra.com/posts/2020/06/linear-regression/">
+                                <span class="button__text">Linear Regression</span>
+                                <span class="button__icon">→</span>
+                            </a>
+                        </span>
+                    
+                </div>
+            </div>
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="https://eklavyachopra.com/">Eklavya Chopra</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://eklavyachopra.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://eklavyachopra.com/bundle.min.5fa2ae02ce99d1bf5e7b4808c83c16bc7f5b94afaadb74485196b14cf6871228d9737fd0596f4258c3b38ec7ffeb5a3ba6b429fc2db125df55809e348390e448.js" integrity="sha512-X6KuAs6Z0b9ee0gIyDwWvH9blK&#43;q23RIUZaxTPaHEijZc3/QWW9CWMOzjsf/61o7prQp/C2xJd9VgJ40g5DkSA=="></script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+
+
+    </body>
+</html>
